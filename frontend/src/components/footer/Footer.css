@@ -1,0 +1,129 @@
+
+.footer {
+  background-color: #3b1f36;
+  padding: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  border-radius: 40px 40px 0 0;
+  width: 100%;
+  margin-top: auto;
+  color: white;
+}
+
+.footer-links,
+.footer-mid,
+.footer-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-links a,
+.footer-mid a,
+.footer-right a {
+  margin-bottom: 10px;
+  color: white;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.footer-social {
+  display: flex;
+  float: right;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-social a {
+  margin-right: 10px;
+  color: #fff;
+  text-decoration: none;
+}
+.footer-social p {
+  text-decoration: underline;
+  padding-bottom: 30px;
+}
+
+
+/* From Uiverse.io by elisapi */ 
+.sol-icon {
+  width: fit-content;
+  height: fit-content;
+  background-color: transparent;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  gap: 10px;
+  border: none;
+}
+
+/* for all social containers*/
+.socialContainer {
+  width: 52px;
+  height: 52px;
+  background-color: #949494;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition-duration: 0.3s;
+  border-radius: 30px;
+}
+/* instagram*/
+.containerOne:hover {
+  background-color: #d62976;
+  transition-duration: 0.3s;
+  transform: scale(1.2);
+}
+/* twitter*/
+.containerTwo:hover {
+  background-color: #00acee;
+  transition-duration: 0.3s;
+  transform: scale(1.2);
+}
+/* linkdin*/
+.containerThree:hover {
+  background-color: #0072b1;
+  transition-duration: 0.3s;
+  transform: scale(1.2);
+}
+/* Whatsapp*/
+.containerFour:hover {
+  background-color: #128c7e;
+  transition-duration: 0.3s;
+  transform: scale(1.2);
+}
+
+.socialContainer:active {
+  transform: scale(0.9);
+  transition-duration: 0.3s;
+}
+
+.socialSvg {
+  width: 17px;
+}
+
+.socialSvg path {
+  fill: rgb(255, 255, 255);
+}
+
+.socialContainer:hover .socialSvg {
+  animation: slide-in-top 0.3s both;
+}
+
+@keyframes slide-in-top {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

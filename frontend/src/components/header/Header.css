@@ -1,0 +1,47 @@
+
+.logo{
+  display: flex;
+  flex-direction:row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.logo h1{
+  display: flex;
+}
+.logo img{
+  margin-right: 8px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+  }
+  
+
+.navbar-light .navbar-nav .nav-link {
+    margin: 0 8px;
+    font-size: 20px;
+    font-weight: 500;
+    color: rgba(36, 48, 53, 0.685);
+}
+.navbar-nav .nav-item{
+  transition: color 0.3s, transform 0.3s; 
+}
+
+.navbar-nav .nav-item:hover {
+    border-bottom: 3px solid rgb(20, 104, 230);
+    transform: scale(1.1);
+}
+
+.btn{
+  margin: 3px;
+  border-radius: 30px;
+}
+
+.btn:hover {
+  transform: translateY(-2px); /* Move the button up slightly on hover */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Add a shadow effect */
+  transition: all 0.3s ease; /* Smooth transition for all properties */
+}
+

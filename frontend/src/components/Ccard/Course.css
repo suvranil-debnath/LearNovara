@@ -1,0 +1,222 @@
+
+#app { height: 100% }
+html,
+body {
+  position: relative;
+  height: 100%;
+  background: rgb(255, 255, 255);
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
+/* Container Section(Above the card Section)  */
+
+.filters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+  }
+.filters label {
+    font-size: 18px;
+    color: #8a6d6d;
+  }
+.filters input {
+    margin-right: 10px;
+
+  }
+.underline {
+    color: #0066cc;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+/* Sort Dropdown */
+.dropdown button{
+  background-color: #a72121;
+  color: #ffffff;
+  border: none;
+
+}
+.dropdown_content{
+  height: 40px;
+  background-color: #ffffff;
+  border-radius: 25px;
+  border: none;
+  font-size: 18px;
+  color: #a05252;
+  padding: 5px;
+
+}
+.dropdown_content:hover{
+  height: 40px;
+  background-color: #f1f1f1;
+  border-radius: 25px;
+  border: none;
+  padding: 5px;
+  font-size: 18px;
+  color: #a05252;
+}
+
+h1.popular-courses {
+    font-size: 30px;
+    color: #a05252;
+    padding: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    background-color: #eccc9f;
+    border-radius: 30px;
+    display: inline-block;
+    text-align: center;
+  }
+
+/* Card Section */
+
+.course_card{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: auto;
+    border-radius: 40px;
+    background-color: rgb(255, 255, 255);
+}
+.image-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 5px;
+    position: relative;
+    background-color: rgb(226, 136, 136);
+    border-radius: 40px 40px 0px 0px;
+}
+.card-content{
+    padding: 0px 10px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+.overlay{
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+.card-image{
+    position: relative;
+    height:200px;
+    width: auto;
+    border-radius: 40px;
+    padding: 10px;
+}
+.card-image .card-img{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    /* border: 5px solid rgb(27, 28, 31); */
+    border-radius: 40px 40px 0px 0px;
+    object-fit: cover;
+}
+.name{
+    font-size:25px;
+    font-weight: 600;
+    color: rgb(0, 0, 0);
+    padding-bottom: 2px;
+
+}
+.subname{
+    font-size:20px;
+    color: rgb(127, 37, 29);
+    padding-bottom: 2px;
+
+}
+.description{
+    font-size:15px;
+    color: rgb(127, 37, 29);
+    padding-bottom: 2px;
+}
+hr{
+  width:100%;
+  color: #000;
+}
+.button{
+    border: none;
+    font-size: 15px;
+    color:rgb(31, 83, 128);
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: aliceblue;
+    border:3px solid rgb(150, 189, 223);;
+    border-radius: 15px;
+    margin: 5px;
+}
+.buttonSide{
+    width: 80px;
+    height: 40px;
+    border: none;
+    font-size: 18px;
+    color:rgb(255, 255, 255);
+    padding-left: 5px;
+    background-color: rgb(92, 172, 243);
+    border-radius: 40px;
+    margin: 10px;
+    transition: 0.2s;
+}
+.buttonside{
+    text-align: right;
+}
+.buttonSide:hover{
+    background-color: rgb(44, 127, 199);
+
+}
+.button:hover{
+    color:rgb(26, 66, 101);
+    background-color: rgb(188, 224, 255);
+    border:3px solid rgb(118, 152, 182);
+    transition: 0.2s;
+}
+
+/* Swiper section */
+
+.swiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  color: #f7f7f7;
+  background: #382626;
+  text-align: left;
+}
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: auto;
+  height: auto;
+
+   /* Center slide text vertically */
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.swiper-slide img {
+  display: block;
+  width: 100%;
+}
+
+.swiper-button-next:after{
+  color: #eccc9f;
+}
+.swiper-button-prev:after{
+  color: #eccc9f;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

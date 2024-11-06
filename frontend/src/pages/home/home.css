@@ -1,0 +1,132 @@
+/* .home {
+    background-color: #f5f5f5;
+    padding: 100px 0;
+    text-align: center;
+  
+    .home-content {
+      max-width: 800px;
+      margin: 0 auto;
+  
+      h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+  
+        @media (max-width: 768px) {
+          font-size: 28px;
+        }
+      }
+  
+      p {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 40px;
+  
+        @media (max-width: 768px) {
+          font-size: 16px;
+        }
+      }
+    }
+  } */
+
+/* SearcgBar Start */
+@keyframes expandInput {
+  0% {
+      width: 50px; /* Start with a small width */
+      opacity: 0; /* Start invisible */
+  }
+  30% {
+      width: 50px;
+      opacity: 1; /* Become visible with the icon */
+  }
+  100% {
+      width: 100%; /* Expand to full width */
+      opacity: 1; /* Fully visible */
+  }
+}
+
+@keyframes expandButton {
+  0% {
+      transform: scale(1.5); /* Magnifying glass starts bigger */
+  }
+  100% {
+      transform: scale(1); /* Returns to normal size */
+  }
+}
+.bar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Container and positioning */
+.search-bar {
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.search-bar input {
+  padding: 10px 25px;
+  border: 2px solid #0da5d3;
+  background-color: #c0ecfaa8;
+  font-weight: 700;
+  font-size: 25px;
+  border-radius: 35px 0 0 35px;
+  outline: none;
+  height: 70px;
+  transition: width 1s ease; /* Smooth width expansion */
+  animation: expandInput 1.5s ease forwards; /* Trigger animation */
+}
+
+.search-bar button {
+  padding: 15px;
+  border: 2px solid #0da5d3; /* Same color as input border */
+  background-color: #15a1cc;
+  border-radius: 0 35px 35px 0; /* Adjusted to match the input box */
+  height: 70px; /* Same height as input box */
+  width: 70px; /* Circular appearance */
+  cursor: pointer;
+  transition: transform 0.5s ease; /* Smooth scaling */
+  animation: expandButton 1.5s ease forwards; /* Trigger button animation */
+  display: flex; /* Center the icon inside */
+  justify-content: center;
+  align-items: center;
+}
+
+.search-icon {
+  font-size: 28px;
+  color: white;
+  transition: transform 0.5s ease; /* Magnifying glass transition */
+  transform: scale(1.5); /* Initially larger icon */
+}
+/* SearchBar End */
+
+
+/* IntroSection Start */
+.intro-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(2vw + 2vh);
+  font-weight: 200;
+  width: 100%;
+  margin: 0 8px 0 8px;
+  
+}
+
+
+.intro-text h2 {
+  font-weight: 300;
+  font-size: calc(3.5vw + 3.5vh);
+
+}
+
+.intro-text span {
+  font-weight: 900;
+  color: #000;
+}
+
+.intro-image img {
+  width:100%;
+}
+

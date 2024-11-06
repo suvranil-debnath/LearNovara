@@ -1,0 +1,102 @@
+/* Container styling */
+.account-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  background: linear-gradient(135deg, #f0f4ff, #d8e2ff);
+  padding: 20px;
+}
+
+/* Profile Card */
+.profile {
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 25px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+  max-width: 300px;
+  min-height: 350px;
+  width: 100%;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.profile:hover {
+  transform: translateY(-5px);
+}
+
+.profile h2 {
+  font-size: 1.8rem;
+  color: #4b4f56;
+  margin-bottom: 1.5rem;
+}
+
+/* Profile Info Styling */
+.profile-info {
+  text-align: left;
+  margin:40px 10px;
+}
+
+.profile-info p {
+  font-size: 1rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.profile-info strong {
+  color: #6c5ce7;
+}
+
+/* Buttons */
+.com-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 28px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+  background-color: #6c5ce7;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.com-btn:hover {
+  background-color: #574bce;
+  transform: translateY(-3px);
+}
+
+.admin-btn {
+  background-color: #5f27cd;
+  margin-top: 15px;
+}
+
+.logout-btn {
+  background-color: #d63031;
+  margin-top: 20px;
+}
+
+.logout-btn:hover {
+  background-color: #e74c3c;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile {
+    padding: 20px;
+    margin: 30px auto;
+  }
+
+  .profile h2 {
+    font-size: 1.5rem;
+  }
+
+  .common-btn {
+    font-size: 0.9rem;
+  }
+}

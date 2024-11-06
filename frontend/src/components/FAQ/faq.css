@@ -1,0 +1,43 @@
+.faq{
+    margin: 18px 20px 0 20px;
+}
+.faq-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.faq-title {
+    font-size: 3em;
+    margin-right: 5px;
+}
+
+.asked {
+    font-family: "Roboto Slab";
+    font-size: 3em;
+    color: #aaa;
+}
+
+.faq-illustration img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* Ans and Questions */
+.qna{
+    display: inline-block;
+    margin-top: 10px;
+}
+.qna h4{
+    margin: 3px;
+    padding: 0;
+    float: left;
+}
+.qna p{
+    width: 70%;
+    height: auto;
+    float: right;
+    text-align: left;
+}

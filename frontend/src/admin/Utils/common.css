@@ -1,0 +1,98 @@
+
+.sidebar {
+  background-color: rgb(236, 236, 236);
+  margin: 0 18px 0 18px;
+  padding-top: 15px;
+  width: 180px;
+  left: 0;
+  color: white;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+}
+
+/* Responsive width for sidebar */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 50px;
+  }
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar ul li {
+    margin: 15px 10px;
+    cursor: pointer;
+    padding: 12px;
+    border-radius: 30px;
+    transition: ease 0.3s;
+}
+
+/* Responsive padding for list items */
+@media (max-width: 768px) {
+  .sidebar ul li {
+    padding: 7px;
+  }
+}
+
+.sidebar ul li:hover {
+  background-color: rgb(4, 162, 253);
+  transform: scale(1.05);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+  color: white;
+  transition: color 0.3s ease;
+}
+
+
+.sidebar ul li a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: rgb(54, 54, 54);
+  font-size: 20px;
+  width: 100%;
+  transition: ease 0.2s;
+}
+
+
+.sidebar ul li a .icon{
+  margin:0 0 6px 0;
+}
+.sidebar ul li a span {
+  margin-left: 15px;
+}
+
+
+/* Hide span on smaller screens */
+@media (max-width: 768px) {
+  .sidebar ul li a span {
+    display: none;
+  }
+}
+
+.dashboard-admin {
+  display: flex;
+  margin-top: 20px;
+}
+.content{
+  display: flex;
+  flex:1;
+  flex-wrap: wrap;
+  margin-left: 200px;
+}
+@media (max-width: 768px) {
+  .content{
+    margin-left: 80px;
+  }
+  
+}
