@@ -1,0 +1,16 @@
+{
+  "name": "learnovara",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "install-server":"cd server && npm install",
+    "start-server":"cd server && npm run dev",
+    "install-frontend":"cd frontend && npm install",
+    "build-frontend":"cd frontend && npm run build",
+    "start-frontend":"cd frontend && npm run dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
