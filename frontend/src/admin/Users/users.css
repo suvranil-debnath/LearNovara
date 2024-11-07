@@ -1,3 +1,4 @@
+/* Main container styling */
 .users {
   padding: 2rem;
   max-width: 1000px;
@@ -12,6 +13,7 @@
   color: #333;
 }
 
+/* Table styling */
 .users-table {
   width: 100%;
   border-collapse: collapse;
@@ -30,7 +32,7 @@
 }
 
 .users-table th {
-  background: #f4f6f8;
+  background: #90add6;
   font-weight: 600;
   color: #555;
 }
@@ -52,4 +54,86 @@
 
 .update-btn:hover {
   background: #45a049;
+}
+
+/* Styling for odd rows */
+.users-table tr:nth-child(odd) {
+  background-color: #caddf8;
+}
+.users-table tr:nth-child(even) {
+  background-color: #b6cae6;
+}
+
+/* Existing row hover effect */
+.users-table tr:hover {
+  background: #e2ebf7;
+}
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .users {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .users-table th, .users-table td {
+    font-size: 0.9rem;
+    padding: 0.75rem;
+  }
+
+  .update-btn {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+@media (max-width: 496px) {
+  .users-table,
+  .users-table thead,
+  .users-table tbody,
+  .users-table th,
+  .users-table td,
+  .users-table tr {
+    display: flex;
+    flex-wrap: wrap;
+    
+  }
+
+  .users-table th {
+    display: none;
+  }
+
+  .users-table tr {
+    margin-bottom: 1rem;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .users-table td {
+    padding: 0.75rem;
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .users-table td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #555;
+    display: inline-block;
+  }
+
+  .update-btn {
+    font-size: 0.8rem;
+    padding: 0.5rem;
+    width: 100%;
+    text-align: center;
+  }
 }

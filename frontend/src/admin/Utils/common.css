@@ -13,11 +13,7 @@
 }
 
 /* Responsive width for sidebar */
-@media (max-width: 768px) {
-  .sidebar {
-    width: 50px;
-  }
-}
+
 
 .sidebar ul {
   list-style: none;
@@ -72,6 +68,12 @@
   margin-left: 15px;
 }
 
+@media (max-width: 768px) {
+  .sidebar {
+    width: 50px;
+    margin: 0 5px;
+  }
+}
 
 /* Hide span on smaller screens */
 @media (max-width: 768px) {
@@ -92,7 +94,7 @@
 }
 @media (max-width: 768px) {
   .content{
-    margin-left: 80px;
+    margin-left: 55px;
   }
   
 }

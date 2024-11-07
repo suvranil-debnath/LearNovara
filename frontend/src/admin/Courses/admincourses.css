@@ -3,8 +3,8 @@
   flex-wrap: wrap;
   flex: 1;
   gap: 2rem;
-  padding: 2rem;
-  margin: 15px;
+  padding: 15px;
+  margin: 10px;
   border-radius: 30px;
   background-color: #dbdde0;
 }
@@ -79,5 +79,36 @@
 .course-form img {
   margin: 1rem 0;
   border-radius: 8px;
+}
+
+
+@media (max-width: 500px) {
+  .admin-courses{
+    max-width: 290px;
+  }
+  .left{
+    flex: 1;
+    min-width: fit-content;
+  }
+  .course-card{
+    padding: 10px;
+    width: 210px;
+    height: 390px;
+  }
+  .course-form {
+    padding: 0.5rem;
+    width: 250px;
+  }
+
+  .course-form h2 {
+    font-size: 1.2rem;
+  }
+
+  .course-form input[type="text"],
+  .course-form input[type="number"],
+  .course-form select,
+  .course-form textarea {
+    padding: 0.5rem;
+  }
 }
 
