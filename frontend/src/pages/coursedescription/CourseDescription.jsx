@@ -112,7 +112,12 @@ const CourseDescription = ({ user }) => {
                   <div className="badge">Popular</div>
                   <p className="duration">{course.duration} mins</p>
                 </div>
-                <div className="sd-btn"> {isAuth ? (
+
+                <div className="sd-btn">
+            </div>
+
+                <div className="course-details">
+                  <h2>{course.title}</h2> {isAuth ? (
                     <>
                       {user && user.role !== "admin" ? (
                         <>
@@ -143,13 +148,7 @@ const CourseDescription = ({ user }) => {
                       LogIn
                     </button>
                   )}
-            </div>
-                <div className="course-details">
-                  <h2>{course.title}</h2>
-                  <div className="course-meta">
-                    <span>Creator: {course.createdBy}</span><br/>
-                    <span>Duration: {course.duration} mins</span>
-                  </div>
+                  
 {/* 
                   <div className="rating">
                     <span>★★★★☆</span> <span>(43,435)</span>
@@ -161,6 +160,10 @@ const CourseDescription = ({ user }) => {
 
 
                 </div>
+                <div className="course-meta">
+                    <span>Creator: {course.createdBy}</span><br/>
+                    <span>Duration: {course.duration} mins</span>
+                  </div>
               </div>
 
               <div className="course-content">

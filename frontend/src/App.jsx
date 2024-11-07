@@ -27,6 +27,7 @@ const App = () =>{
   const {isAuth, user , loading} = UserData()
   return(
     <>
+    <div className="mainwrap">
       {loading ? (
         <Loading />
       ) : (
@@ -92,6 +93,7 @@ const App = () =>{
           </Routes>
         </BrowserRouter>
       )}
+      </div>
     </>
   );
 }
