@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Chat from "./components/Chat/Chat";
 import Home from "./pages/home/Home";
 import Header from "./components/header/Header";
 import Login from "./pages/auth/Login";
@@ -28,6 +29,7 @@ const App = () =>{
   return(
     <>
     <div className="mainwrap">
+       <Chat/>
       {loading ? (
         <Loading />
       ) : (
