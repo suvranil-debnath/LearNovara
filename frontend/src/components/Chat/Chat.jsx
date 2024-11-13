@@ -1,6 +1,6 @@
 
 import React, {Component} from 'react'
-// import '../Chat/Chat.css'
+import '../Chat/Chat.css'
 
 export class Chat extends Component{
 
