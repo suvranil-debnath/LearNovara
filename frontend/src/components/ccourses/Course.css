@@ -182,7 +182,7 @@ hr{
   padding-top: 50px;
   padding-bottom: 50px;
   color: #f7f7f7;
-  background: #3b1f36;
+  background: #dedede;
   text-align: left;
 }
 .swiper-slide {
@@ -202,10 +202,10 @@ hr{
 }
 
 .swiper-button-next:after{
-  color: #eccc9f;
+  color: #525252;
 }
 .swiper-button-prev:after{
-  color: #eccc9f;
+  color: #525252;
 }
 
 
