@@ -110,7 +110,7 @@ const CourseDescription = ({ user }) => {
                     className="course-image"
                   />
                   <div className="badge">Popular</div>
-                  <p className="duration">{course.duration} mins</p>
+                  <p className="duration">{course.duration} weeks</p>
                 </div>
 
                 <div className="sd-btn">
@@ -162,7 +162,7 @@ const CourseDescription = ({ user }) => {
                 </div>
                 <div className="course-meta">
                     <span>Creator: {course.createdBy}</span><br/>
-                    <span>Duration: {course.duration} mins</span>
+                    <span>Duration: {course.duration} weeks</span>
                   </div>
               </div>
 
