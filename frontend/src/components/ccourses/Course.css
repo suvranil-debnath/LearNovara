@@ -42,7 +42,7 @@ body {
 .dropdown_content{
   height: 40px;
   background-color: #ffffff;
-  border-radius: 25px;
+  border-radius: 20px;
   border: none;
   font-size: 18px;
   color: #a05252;
@@ -52,7 +52,7 @@ body {
 .dropdown_content:hover{
   height: 40px;
   background-color: #f1f1f1;
-  border-radius: 25px;
+  border-radius: 20px;
   border: none;
   padding: 5px;
   font-size: 18px;
@@ -90,7 +90,7 @@ h1.popular-courses {
     row-gap: 5px;
     position: relative;
     background-color: #9c528f;
-    border-radius: 40px 40px 0px 0px;
+    border-radius: 20px 20px 0px 0px;
 }
 .card-content{
     padding: 0px 10px 10px 10px;
@@ -114,7 +114,7 @@ h1.popular-courses {
     width: 100%;
     background-color: rgb(255, 255, 255);
     /* border: 5px solid rgb(27, 28, 31); */
-    border-radius: 35px 35px 0px 0px;
+    border-radius: 20px 20px 0px 0px;
     object-fit: cover;
 }
 .name{
