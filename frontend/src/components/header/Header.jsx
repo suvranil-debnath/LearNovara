@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import './Header.css'
 
-import bulblogo from './bulblogo.png'
+import bulblogo from './bulblogo.jpg'
 import { TbMenuOrder } from "react-icons/tb";
 
 
