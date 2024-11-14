@@ -7,7 +7,7 @@ import Typed from 'typed.js';
 import Faq from '../../components/FAQ/Faq'
 import Footer from '../../components/footer/Footer'
 import Course from '../../components/ccourses/Course'
-import Course from '../../components/review/Review'
+import Review from '../../components/review/Review'
 
 const Home = () => {
       // Create reference to store the DOM element containing the animation
