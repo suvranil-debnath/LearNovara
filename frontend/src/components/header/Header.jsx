@@ -13,7 +13,7 @@ const Header = ({isAuth}) => {
         <div className="row align-items-center">
         {/* Logo Section */}
             <div className="col-lg-3 col-md-3 col-sm-12 logo">
-            <img src={bulblogo} alt="logo"/>
+            <img src={bulblogo} className="logo-img" alt="logo"/>
             <h1>Lear</h1><h1>Novara</h1>
         </div>
 
