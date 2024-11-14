@@ -9,8 +9,9 @@
 .logo h1{
   display: flex;
 }
-.logo img{
+.logo-img{
   margin-right: 8px;
+  height: 60px;;
 }
 
 nav ul {
