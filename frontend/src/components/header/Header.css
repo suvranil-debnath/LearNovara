@@ -26,6 +26,7 @@ nav ul {
     color: rgba(36, 48, 53, 0.685);
 }
 .navbar-nav .nav-item{
+  margin:auto;
   transition: color 0.3s, transform 0.3s; 
 }
 
