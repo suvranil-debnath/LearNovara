@@ -108,6 +108,11 @@
   max-width: 700px;
   padding: 10px;
 }
+@media (max-width: 496px) {
+  .right{
+    min-width: fit-content;
+  }
+}
 
 /* Add Lecture Button */
 .right button {
