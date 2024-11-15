@@ -23,7 +23,8 @@
     "react-youtube": "^10.1.0",
     "swiper": "^11.1.14",
     "typed.js": "^2.1.0",
-    "youtube-transcript": "^1.2.1"
+    "youtube-transcript": "^1.2.1",
+    "youtubei.js": "^11.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
