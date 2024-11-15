@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import { TiTick } from "react-icons/ti";
 import { FaTrash, FaPaperPlane } from "react-icons/fa";
 import YouTube from "react-youtube";
+import { Innertube } from "youtubei.js/web";
 import Groq from "groq-sdk";
 
 const Lecture = ({ user }) => {
@@ -64,9 +65,14 @@ const Lecture = ({ user }) => {
         },
       });
       setLecture(data.lecture);
-
-      // Fetch transcript for the lecture
-      await fetchTranscript(getYouTubeID(data.lecture.video));
+  
+      // Fetch transcript for the lecture using the new function
+      const videoId = getYouTubeID(data.lecture.video);
+      if (videoId) {
+        await fetchTranscript(videoId);
+      } else {
+        setLecture((prev) => ({ ...prev, transcript: "Transcript not available." }));
+      }
     } catch (error) {
       console.error("Error fetching lecture:", error);
       toast.error("Failed to fetch lecture.");
@@ -77,12 +83,24 @@ const Lecture = ({ user }) => {
 
   const fetchTranscript = async (videoId) => {
     try {
-      const { data } = await axios.get(`${server}/api/transcript/${videoId}`, {
-        headers: {
-          token: localStorage.getItem("token"),
-        },
+      // Initialize Innertube
+      const youtube = await Innertube.create({
+        lang: "en",
+        location: "US",
+        retrieve_player: false,
       });
-      setLecture((prev) => ({ ...prev, transcript: data.transcript || "Transcript not available." }));
+  
+      // Fetch video info and transcript
+      const info = await youtube.getInfo(`https://www.youtube.com/watch?v=${videoId}`);
+      const transcriptData = await info.getTranscript();
+  
+      // Map transcript segments to plain text
+      const transcript = transcriptData.transcript.content.body.initial_segments
+        .map((segment) => segment.snippet.text)
+        .join(" ");
+  
+      // Update lecture state with the fetched transcript
+      setLecture((prev) => ({ ...prev, transcript }));
     } catch (error) {
       console.error("Error fetching transcript:", error);
       setLecture((prev) => ({ ...prev, transcript: "Transcript not available." }));
