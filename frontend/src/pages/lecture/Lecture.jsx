@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import { TiTick } from "react-icons/ti";
 import { FaTrash, FaPaperPlane } from "react-icons/fa";
 import YouTube from "react-youtube";
+import Groq from "groq-sdk";
 
 const Lecture = ({ user }) => {
   const [lectures, setLectures] = useState([]);
@@ -25,11 +26,20 @@ const Lecture = ({ user }) => {
   const [completedLec, setCompletedLec] = useState(0);
   const [lectLength, setLectLength] = useState(0);
   const [progress, setProgress] = useState([]);
+  const [allQnas, setAllQnas] = useState([]);
+  const [question, setQuestion] = useState("");
+  const [isFetchingAnswer, setIsFetchingAnswer] = useState(false);
 
   if (user && user.role !== "admin" && !user.subscription.includes(params.id))
     return navigate("/");
+//LLM Creating
+  const groq = new Groq({
+    apiKey: "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",
+    dangerouslyAllowBrowser: true,
+  });
 
-  async function fetchLectures() {
+  const fetchLectures = async () => {
+    setLoading(true);
     try {
       const { data } = await axios.get(`${server}/api/lectures/${params.id}`, {
         headers: {
@@ -37,14 +47,15 @@ const Lecture = ({ user }) => {
         },
       });
       setLectures(data.lectures);
-      setLoading(false);
     } catch (error) {
-      console.log(error);
+      console.error("Error fetching lectures:", error);
+      toast.error("Failed to fetch lectures.");
+    } finally {
       setLoading(false);
     }
-  }
+  };
 
-  async function fetchLecture(id) {
+  const fetchLecture = async (id) => {
     setLecLoading(true);
     try {
       const { data } = await axios.get(`${server}/api/lecture/${id}`, {
@@ -53,35 +64,65 @@ const Lecture = ({ user }) => {
         },
       });
       setLecture(data.lecture);
-      setLecLoading(false);
 
-      // Fetch the transcript for the selected lecture
-      fetchTranscript(getYouTubeID(data.lecture.video));
+      // Fetch transcript for the lecture
+      await fetchTranscript(getYouTubeID(data.lecture.video));
     } catch (error) {
-      console.log(error);
+      console.error("Error fetching lecture:", error);
+      toast.error("Failed to fetch lecture.");
+    } finally {
       setLecLoading(false);
     }
-  }
+  };
 
-  async function fetchTranscript(videoId) {
+  const fetchTranscript = async (videoId) => {
     try {
       const { data } = await axios.get(`${server}/api/transcript/${videoId}`, {
         headers: {
           token: localStorage.getItem("token"),
         },
       });
-      setLecture((prev) => ({ ...prev, transcript: data.transcript }));
+      setLecture((prev) => ({ ...prev, transcript: data.transcript || "Transcript not available." }));
     } catch (error) {
-      console.log("Error fetching transcript:", error);
+      console.error("Error fetching transcript:", error);
       setLecture((prev) => ({ ...prev, transcript: "Transcript not available." }));
     }
-  }
+  };
+
+  const fetchAIAnswer = async (userQuestion) => {
+    setIsFetchingAnswer(true);
+    try {
+      const chatCompletion = await groq.chat.completions.create({
+        messages: [{ role: "user", content: userQuestion }],
+        model: "llama3-8b-8192",
+      });
+
+      return chatCompletion.choices[0]?.message?.content || "No answer available.";
+    } catch (error) {
+      console.error("Error fetching AI answer:", error);
+      return "An error occurred while fetching the answer.";
+    } finally {
+      setIsFetchingAnswer(false);
+    }
+  };
+
+  const handleAddQuestion = async () => {
+    if (question.trim()) {
+      const transcript = lecture.transcript || "";
+      const userQuestion = `${transcript}\nQuestion: ${question}`;
+      const aiAnswer = await fetchAIAnswer(userQuestion);
+      setAllQnas([...allQnas, { q: question, a: aiAnswer }]);
+      setQuestion("");
+    } else {
+      toast.error("Please enter a valid question.");
+    }
+  };
 
   const submitHandler = async (e) => {
-    setBtnLoading(true);
     e.preventDefault();
-    const myForm = new FormData();
+    setBtnLoading(true);
 
+    const myForm = new FormData();
     myForm.append("title", title);
     myForm.append("description", description);
     myForm.append("video", video);
@@ -96,72 +137,61 @@ const Lecture = ({ user }) => {
           },
         }
       );
-
       toast.success(data.message);
-      setBtnLoading(false);
       setShow(false);
       fetchLectures();
       setTitle("");
       setDescription("");
       setVideo("");
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.response?.data?.message || "Failed to add lecture.");
+    } finally {
       setBtnLoading(false);
     }
   };
 
   const deleteHandler = async (id) => {
-    if (confirm("Are you sure you want to delete this lecture")) {
+    if (window.confirm("Are you sure you want to delete this lecture?")) {
       try {
         const { data } = await axios.delete(`${server}/api/lecture/${id}`, {
           headers: {
             token: localStorage.getItem("token"),
           },
         });
-
         toast.success(data.message);
         fetchLectures();
       } catch (error) {
-        toast.error(error.response.data.message);
+        toast.error(error.response?.data?.message || "Failed to delete lecture.");
       }
     }
   };
 
-  async function fetchProgress() {
+  const fetchProgress = async () => {
     try {
-      const { data } = await axios.get(
-        `${server}/api/user/progress?course=${params.id}`,
-        {
-          headers: {
-            token: localStorage.getItem("token"),
-          },
-        }
-      );
-
+      const { data } = await axios.get(`${server}/api/user/progress?course=${params.id}`, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      });
       setCompleted(data.courseProgressPercentage);
       setCompletedLec(data.completedLectures);
       setLectLength(data.allLectures);
       setProgress(data.progress);
     } catch (error) {
-      console.log(error);
+      console.error("Error fetching progress:", error);
     }
-  }
+  };
 
   const addProgress = async (id) => {
     try {
-      const { data } = await axios.post(
-        `${server}/api/user/progress?course=${params.id}&lectureId=${id}`,
-        {},
-        {
-          headers: {
-            token: localStorage.getItem("token"),
-          },
-        }
-      );
-      console.log(data.message);
+      await axios.post(`${server}/api/user/progress?course=${params.id}&lectureId=${id}`, {}, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      });
       fetchProgress();
     } catch (error) {
-      console.log(error);
+      console.error("Error updating progress:", error);
     }
   };
 
@@ -170,22 +200,21 @@ const Lecture = ({ user }) => {
     return match ? match[1] : null;
   };
 
+  const videoOptions = {
+    height: "500",
+    width: "100%",
+    playerVars: { autoplay: 0 },
+  };
+
+  const onVideoEnd = () => addProgress(lecture._id);
+
   useEffect(() => {
     fetchLectures();
     fetchProgress();
   }, []);
 
-  const videoOptions = {
-    height: '500',
-    width: '100%',
-    playerVars: {
-      autoplay: 0,
-    },
-  };
 
-  const onVideoEnd = () => {
-    addProgress(lecture._id);
-  };
+
 
   return (
     <>
@@ -286,18 +315,23 @@ const Lecture = ({ user }) => {
                   <p>No Lectures Yet!</p>
                 )}
               </div>
-
               <div className="group-chat">
-                <h3>Group Chat</h3>
-                <div className="chat-box">
-                </div>
-                <div className="input-container">
-                  <input type="text" placeholder="Type a message..." />
-                  <button className="send-button">
-                    <FaPaperPlane />
-                  </button>
-                </div>
+              <h3>Clear Your Doubts</h3>
+              <div className="chat-box">
+                {allQnas.map((qna, index) => (
+                  <div className="qna" key={index}>
+                    <h4>{qna.q}</h4>
+                    <p>{qna.a}</p>
+                  </div>
+                ))}
               </div>
+              <div className="input-container">
+                <input type="text" placeholder="Enter your question" value={question} onChange={(e) => setQuestion(e.target.value)} />
+                <button className="send-button" onClick={handleAddQuestion} disabled={isFetchingAnswer}>
+                  {isFetchingAnswer ? "Loading..." : <FaPaperPlane />}
+                </button>
+              </div>
+            </div>
             </div>
           </div>
         </>
