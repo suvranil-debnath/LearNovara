@@ -33,7 +33,7 @@ const Lecture = ({ user }) => {
 
   if (user && user.role !== "admin" && !user.subscription.includes(params.id))
     return navigate("/");
-//LLM Creating
+//LLM C
   const groq = new Groq({
     apiKey: "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",
     dangerouslyAllowBrowser: true,
@@ -65,14 +65,9 @@ const Lecture = ({ user }) => {
         },
       });
       setLecture(data.lecture);
-  
-      // Fetch transcript for the lecture using the new function
-      const videoId = getYouTubeID(data.lecture.video);
-      if (videoId) {
-        await fetchTranscript(videoId);
-      } else {
-        setLecture((prev) => ({ ...prev, transcript: "Transcript not available." }));
-      }
+
+      // Fetch transcript for the lecture
+      await fetchTranscript(getYouTubeID(data.lecture.video));
     } catch (error) {
       console.error("Error fetching lecture:", error);
       toast.error("Failed to fetch lecture.");
@@ -81,31 +76,22 @@ const Lecture = ({ user }) => {
     }
   };
 
-  const fetchTranscript = async (videoId) => {
+
+  const fetchTranscript = async (url) => {
     try {
-      // Initialize Innertube
-      const youtube = await Innertube.create({
-        lang: "en",
-        location: "US",
-        retrieve_player: false,
+      const response = await axios.get(`${server}/api/transcript/youtube-proxy`, {
+        params: { url },  // Send the videoId as a query parameter
       });
-  
-      // Fetch video info and transcript
-      const info = await youtube.getInfo(`https://www.youtube.com/watch?v=${videoId}`);
-      const transcriptData = await info.getTranscript();
-  
-      // Map transcript segments to plain text
-      const transcript = transcriptData.transcript.content.body.initial_segments
-        .map((segment) => segment.snippet.text)
-        .join(" ");
-  
-      // Update lecture state with the fetched transcript
-      setLecture((prev) => ({ ...prev, transcript }));
+      setLecture((prev) => ({ ...prev, transcript: response.data.transcript }));
     } catch (error) {
       console.error("Error fetching transcript:", error);
       setLecture((prev) => ({ ...prev, transcript: "Transcript not available." }));
     }
   };
+  
+
+
+
 
   const fetchAIAnswer = async (userQuestion) => {
     setIsFetchingAnswer(true);
