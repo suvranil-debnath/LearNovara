@@ -1,15 +1,16 @@
 import express from "express";
-import { Innertube } from "youtubei.js/web"; // Ensure youtubei.js is installed and imported properly
+import { Innertube } from "youtubei.js"; // Adjusted to avoid web-specific import
 
 const router = express.Router();
 
 router.get('/youtube-proxy', async (req, res) => {
   try {
-    const { url } = req.query; // Get video URL from query parameters
-
+    const { url } = req.query;
     if (!url) {
       return res.status(400).json({ message: "YouTube video URL is required." });
     }
+
+    console.log("Fetching transcript for URL:", url);
 
     // Create YouTube instance
     const youtube = await Innertube.create({
@@ -18,30 +19,26 @@ router.get('/youtube-proxy', async (req, res) => {
       retrieve_player: false,
     });
 
-    // Fetch the video info
-    const info = await youtube.getInfo(url);
+    console.log("YouTube instance created successfully.");
 
-    // Check if transcript data is available
-    const transcriptData = await info.getTranscript();
-    if (!transcriptData || !transcriptData.transcript.content.body.initial_segments) {
+    // Fetch video info
+    const videoInfo = await youtube.getInfo(url);
+    console.log("Fetched video information:", videoInfo);
+
+    // Check for transcript availability
+    const transcriptData = await videoInfo.getTranscript();
+    if (!transcriptData || !transcriptData.transcript || !transcriptData.transcript.content) {
       return res.status(404).json({ message: "Transcript not available for this video." });
     }
 
-    // Extract transcript
-    const transcript = transcriptData.transcript.content.body.initial_segments
-      .map((segment) => segment.snippet.text)
-      .join(" ");
+    // Parse transcript content
+    const segments = transcriptData.transcript.content.body.initial_segments || [];
+    const transcript = segments.map(segment => segment.snippet.text).join(" ");
 
-    // Send the transcript back as a response
     res.json({ transcript });
   } catch (error) {
-    console.error("Error fetching transcript:", error);
-
-    if (error.response && error.response.status === 403) {
-      res.status(403).json({ message: "Access to the video is restricted." });
-    } else {
-      res.status(500).json({ message: "An error occurred while fetching YouTube data." });
-    }
+    console.error("Error fetching YouTube transcript:", error);
+    res.status(500).json({ message: "Failed to fetch YouTube transcript." });
   }
 });
 
