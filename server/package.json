@@ -21,7 +21,8 @@
     "nodemailer": "^6.9.13",
     "razorpay": "^2.9.4",
     "uuid": "^9.0.1",
-    "youtube-transcript": "^1.2.1"
+    "youtube-transcript": "^1.2.1",
+    "youtubei.js": "^11.0.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.0"
