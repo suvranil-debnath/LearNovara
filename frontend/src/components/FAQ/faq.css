@@ -41,3 +41,46 @@
     float: right;
     text-align: left;
 }
+/* Add Question Section */
+.add-question {
+    margin-top: 20px;
+    color: #aaa;
+    text-align: center;
+    }
+    
+.question-input {
+    width:fit-content;
+    flex: 1;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius:34px 0 0 34px;
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+    transition: 0.2s ease
+}
+
+.add-question-button {
+    height: fit-content;
+    padding: 15px;
+    background-color: teal;
+    color: #fff;
+    border: none;
+    border-radius: 0 34px 34px 0;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    transition: 0.2s ease;
+}
+
+.add-question-button:hover {
+    background-color:rgb(1, 90, 90);
+}
+.add-quetion-input-btn{
+    display: flex;
+    flex:1;
+    flex-wrap: nowrap;
+    margin: 18px 0 ;
+}
+/* Loading State */
+.add-question-button[disabled] {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
