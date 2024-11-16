@@ -4,6 +4,7 @@ import { connectDb } from "./database/db.js";
 import Razorpay from "razorpay";
 import cors from "cors";
 import transcriptRoutes from './routes/transcript.js';
+import faqRoutes from './routes/faq.js'
 
 dotenv.config();
 
@@ -36,6 +37,7 @@ app.use("/api", userRoutes);
 app.use("/api", courseRoutes);
 app.use("/api", adminRoutes);
 app.use('/api/transcript', transcriptRoutes);
+app.use('/api/faqs',faqRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
