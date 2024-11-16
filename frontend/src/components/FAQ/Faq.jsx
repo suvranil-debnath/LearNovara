@@ -25,7 +25,7 @@ const Faq = () => {
         setLoading(true);
         try {
             const chatCompletion = await groq.chat.completions.create({
-                messages: [{ role: "user", content: `${userQuestion} .Maximum Wordlimit 300` }],
+                messages: [{ role: "user", content: `${userQuestion} .Maximum Wordlimit 270` }],
                 model: "llama3-8b-8192",
             });
             const aiAnswer = chatCompletion.choices[0]?.message?.content || "No answer available.";
