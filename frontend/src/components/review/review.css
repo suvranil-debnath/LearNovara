@@ -1,36 +1,35 @@
-
-.review{
+.review {
   margin-bottom: 150px;
-  padding:  0 50px 0 50px;
+  padding: 0 50px 0 50px;
 }
 .rev-headline-card {
   font-family: "PT Mono", monospace;
   display: flex;
   flex-direction: column;
   margin: 10px;
-  padding:5px 10px;
+  padding: 5px 10px;
   border-radius: 10px;
   background-color: #115f71e8;
   color: white;
   max-width: 350px;
-  min-width:300px;
+  min-width: 300px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
   transition: transform 0.2s;
   place-self: center;
 
-  .rev-head{
-    .rev-content{
+  .rev-head {
+    .rev-content {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-      padding: 0  0 10px 7px;
-      img{
+      padding: 0 0 10px 7px;
+      img {
         height: 70px;
         border: 5px dotted;
         border-radius: 50%;
       }
-      h3{
+      h3 {
         margin-right: 20px;
       }
     }
@@ -38,8 +37,8 @@
 }
 
 .rev-headline-card:hover {
-  transform: scale(1.05) !important;
-  transition: transform 0.01s ease-in-out;
+  background-color: #0c505fe8 !important;
+  transition: 0.01s ease-in-out;
 }
 
 .rev-top-view {
@@ -55,14 +54,14 @@
   }
   .rev-left {
     display: flex;
-    gap:50px;
+    gap: 50px;
     flex-direction: column;
     align-items: center;
   }
-  
+
   .rev-right {
     display: flex;
-    flex:1;
+    flex: 1;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
@@ -87,39 +86,36 @@
   margin-top: 20px;
   display: flex;
   flex-direction: row;
-    .rev-right{
-      display: flex;
-      flex-direction: row;
-      flex: 1;
-      flex-wrap: wrap;
-      justify-content: space-around;
+  .rev-right {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    flex-wrap: wrap;
+    justify-content: space-around;
   }
-    .rev-left{
-      display: flex;
-      min-width:300px;
-      justify-content: center;
-      align-items: center;
-    }
+  .rev-left {
+    display: flex;
+    min-width: 300px;
+    justify-content: center;
+    align-items: center;
+  }
 }
-.rev-left-content{
+.rev-left-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-right: 27px;
 }
 
-
-.quote{
+.quote {
   display: flex;
   font-size: 70px;
-  font-family:Georgia, 'Times New Roman', Times, serif;
-  height: 50px ;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  height: 50px;
 }
 .stats {
   text-align: left;
 }
-
-
 
 .circle {
   height: 80px;
@@ -141,7 +137,6 @@
   height: 210px;
   width: 210px;
 }
-
 
 .transparent {
   -webkit-text-stroke-width: 1px;
