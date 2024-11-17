@@ -10,6 +10,7 @@ import Course from '../../components/ccourses/Course';
 import Review from '../../components/review/Review';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import AOS styles
+import TutorsPage from "../../components/tutor/TutorPage";
 
 
 const Home = () => {
@@ -55,6 +56,7 @@ const Home = () => {
             <div data-aos="fade-up" data-aos-delay="100">
                 <Course />
             </div>
+                <TutorsPage/>
                 <Review />
                 <Faq />
                 <Footer />
