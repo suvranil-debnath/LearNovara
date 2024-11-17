@@ -24,7 +24,6 @@ router.post('/', async (req, res) => {
 router.get('/', async (req, res) => {
     try {
         const faqs = await Faq.find({});
-        console.log("Fetched FAQs:", faqs); // Debug log to see fetched data
         res.status(200).json(faqs);
     } catch (error) {
         console.error("Error fetching FAQs:", error);

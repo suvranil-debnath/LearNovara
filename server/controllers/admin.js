@@ -5,6 +5,7 @@ import { rm } from "fs";
 import { promisify } from "util";
 import fs from "fs";
 import { User } from "../models/User.js";
+import { Tutor } from '../models/Turtor.js'; 
 
 export const createCourse = TryCatch(async (req, res) => {
   const { title, description, category, createdBy, duration, price } = req.body;
@@ -117,27 +118,59 @@ export const getAllUser = TryCatch(async (req, res) => {
 });
 
 export const updateRole = TryCatch(async (req, res) => {
-  if (req.user.mainrole !== "superadmin")
-    return res.status(403).json({
-      message: "This endpoint is assign to superadmin",
-    });
+  // Check if the requester is a superadmin
+  if (req.user.mainrole !== "superadmin") {
+      return res.status(403).json({
+          message: "This endpoint is assigned to superadmin",
+      });
+  }
+
+  // Find the user by ID
   const user = await User.findById(req.params.id);
+  if (!user) {
+      return res.status(404).json({
+          message: "User not found",
+      });
+  }
 
   if (user.role === "user") {
-    user.role = "admin";
-    await user.save();
+      // Update role to tutor
+      user.role = "tutor";
+      await user.save();
 
-    return res.status(200).json({
-      message: "Role updated to admin",
-    });
+      // Create a corresponding Tutor document
+      const tutorExists = await Tutor.findOne({ userid: user._id });
+      if (!tutorExists) {
+          const image = req.file;
+          await Tutor.create({
+              userid: user._id,
+              profilepic: image?.path, // Set a default profile picture or use a placeholder
+              createdcourses: [],
+          });
+      }
+
+      return res.status(200).json({
+          message: "Role updated to tutor",
+      });
   }
 
-  if (user.role === "admin") {
-    user.role = "user";
-    await user.save();
+  if (user.role === "tutor") {
+      // Update role back to user
+      user.role = "user";
+      await user.save();
+      const tutor = await Tutor.findOne({ userid: user._id });
+      rm(tutor.profilepic, () => {
+        console.log("image deleted");
+      });
+      // Remove the corresponding Tutor document
+      await Tutor.deleteOne({ userid: user._id });
 
-    return res.status(200).json({
-      message: "Role updated",
-    });
+      return res.status(200).json({
+          message: "Role updated to user",
+      });
   }
+
+  return res.status(400).json({
+      message: "Role update failed. Invalid role state.",
+  });
 });
