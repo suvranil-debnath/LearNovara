@@ -71,110 +71,6 @@ h1.popular-courses {
     text-align: center;
   }
 
-/* Card Section */
-
-.course_card{
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    height: auto;
-    border-radius: 45px;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0px 2px 4px #9c528f;
-
-}
-.image-content{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    row-gap: 5px;
-    position: relative;
-    background-color: #9c528f;
-    border-radius: 35px 35px 0px 0px;
-}
-.card-content{
-    padding: 0px 10px 10px 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-}
-.overlay{
-    position: relative;
-    height: 100%;
-    width: 100%;
-}
-.card-image{
-    position: relative;
-    height:200px;
-    width: auto;
-    padding: 10px;
-}
-.card-image .card-img{
-    height: 100%;
-    width: 100%;
-    background-color: rgb(255, 255, 255);
-    /* border: 5px solid rgb(27, 28, 31); */
-    border-radius: 25px 25px 0px 0px;
-    object-fit: cover;
-}
-.name{
-    font-size:25px;
-    font-weight: 600;
-    color: rgb(0, 0, 0);
-    padding-bottom: 2px;
-
-}
-.subname{
-    font-size:20px;
-    color: rgb(127, 37, 29);
-    padding-bottom: 2px;
-
-}
-.description{
-    font-size:15px;
-    color: rgb(127, 37, 29);
-    padding-bottom: 2px;
-}
-hr{
-  width:100%;
-  color: #000;
-}
-.button{
-    border: none;
-    font-size: 15px;
-    color:rgb(31, 83, 128);
-    padding-left: 5px;
-    padding-right: 5px;
-    background-color: aliceblue;
-    border:3px solid rgb(150, 189, 223);;
-    border-radius: 15px;
-    margin: 5px;
-}
-.buttonSide{
-    height: fit-content;
-    border: none;
-    font-size: 18px;
-    color:rgb(255, 255, 255);
-    padding: 10px 12px;
-    background-color:teal;
-    border-radius: 40px;
-    margin: 10px;
-    transition: 0.2s;
-}
-.buttonside{
-    text-align: center;
-}
-.buttonSide:hover{
-    background-color: rgb(0, 87, 87);
-
-}
-.button:hover{
-    color:rgb(26, 66, 101);
-    background-color: rgb(188, 224, 255);
-    border:3px solid rgb(118, 152, 182);
-    transition: 0.2s;
-}
-
 /* Swiper section */
 
 .swiper {
@@ -182,7 +78,7 @@ hr{
   padding-top: 50px;
   padding-bottom: 50px;
   color: #f7f7f7;
-  background: #dedede;
+  background: #fff0ddce;
   text-align: left;
 }
 .swiper-slide {
@@ -220,3 +116,147 @@ hr{
 
 
 
+/* Card Section */
+.course_card {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  height: auto;
+  border-radius: 30px;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 20px; /* Slightly lower the card */
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.course_card:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.overlay {
+  position: relative;
+  height: 200px;
+  width: 100%;
+  border-radius: 30px 30px 0 0;
+  overflow: hidden;
+}
+
+.card-image {
+  height: 100%;
+  width: 100%;
+}
+
+.card-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 20px 20px 0 0;
+}
+
+.overlay-dark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Dark transparent overlay */
+  display: flex;
+  align-items: flex-end;
+  padding: 10px;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: bold;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.9);
+}
+
+.card-content {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.subname {
+  font-size: 16px;
+  color: #555555;
+  margin-bottom: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.subava{
+  height: 25px;
+  width: 25px !important;
+  margin-right: 5px;
+}
+
+.description {
+  font-size: 14px;
+  color: #777777;
+  margin-bottom: 10px;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: #dddddd;
+  margin: 10px 0;
+}
+
+.price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333333;
+}
+
+.buttonside {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.buttonSide {
+  border: none;
+  font-size: 14px;
+  color: #ffffff;
+  padding: 8px 12px;
+  background-color: teal;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.buttonSide:hover {
+  background-color: #005555;
+  transform: scale(1.05);
+}
+
+.buttonDelete {
+  background-color: rgba(233, 16, 16, 0.701);
+}
+
+.buttonDelete:hover {
+  background-color: rgb(255, 0, 0);;
+}
+
+.card-icons-container {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.card-icon {
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform 0.3s, color 0.3s;
+}
+
+
+.favorite-icon {
+  color: gray;
+}
+
+.share-icon {
+  color: gray;
+}

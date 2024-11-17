@@ -1,6 +1,5 @@
-// CourseCard.js
-import React from 'react';
-import './Course.css'; // Import any relevant styles here
+import React, { useEffect, useState } from "react";
+import "./Course.css"; // Updated styles here
 import { server } from "../../main";
 import { UserData } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
@@ -8,14 +7,18 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { CourseData } from "../../context/CourseContext";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { FaClock, FaHeart, FaRegHeart, FaShareAlt } from "react-icons/fa"; // Icons for duration, favorite, and share
+
 const CcourseCard = ({ course }) => {
   const navigate = useNavigate();
-  const { user, isAuth } = UserData();
-
+  const { user } = UserData();
   const { fetchCourses } = CourseData();
+  const [isFavorite, setIsFavorite] = useState(false); // State to toggle the favorite button
 
   const deleteHandler = async (id) => {
-    if (confirm("Are you sure you want to delete this course")) {
+    if (confirm("Are you sure you want to delete this course?")) {
       try {
         const { data } = await axios.delete(`${server}/api/course/${id}`, {
           headers: {
@@ -31,42 +34,73 @@ const CcourseCard = ({ course }) => {
     }
   };
 
+  const toggleFavorite = () => {
+    setIsFavorite(!isFavorite);
+    toast.success(isFavorite ? "Removed from favorites!" : "Added to favorites!");
+  };
+
+  const shareCourse = () => {
+    const courseUrl = `${window.location.origin}/course/${course._id}`;
+    navigator.clipboard.writeText(courseUrl);
+    toast.success("Course link copied to clipboard!");
+  };
+
 
   return (
-    <div className="course_card">
-      <div className='image-content'>
-        <div className='overlay'>
-          <div className='card-image'>
-            <img src={`${server}/${course.image}`} alt="" className='card-img' />
-          </div>
+    <div className="course_card" data-aos="fade-up"   >
+      {/* Overlay with the image and title */}
+      <div className="overlay">
+        <div className="card-image">
+          <img
+            src={`${server}/${course.image}`}
+            alt={course.title}
+            className="card-img"
+          />
         </div>
+        <div className="overlay-dark">{course.title}</div>
       </div>
 
-      <div className='card-content'>
-        <span className="name">{course.title}</span>
-        <span className='subname'>{course.createdBy}</span>
-        <span className='description'>Duration - {course.duration} weeks</span>
+      {/* Rest of the card content */}
+      <div className="card-content">
+        <div className="subname">
+          <img
+            className="subava"
+            src="https://avatar.iran.liara.run/public/job/teacher/male"
+            alt="avatar"
+          />
+          {course.createdBy}<div className="card-icons-container">
+          <div className="card-icon favorite-icon" onClick={toggleFavorite}>
+            {isFavorite ? <FaHeart style={{ color: "red" }} /> : <FaRegHeart />}
+          </div>
+          <div className="card-icon share-icon" onClick={shareCourse}>
+            <FaShareAlt />
+          </div>
+        </div>
+        </div>
+        <span className="description">
+          <FaClock style={{ marginRight: "5px", color: "teal" }} />{" "}
+          {course.duration} weeks
+        </span>
         <hr />
-        <span className='subname'>Price- ₹{course.price}</span>
-        <div className='buttonside'>
+        <span className="price">₹{course.price}</span>
+
+        <div className="buttonside">
           <button
             onClick={() => navigate(`/course/${course._id}`)}
-            className='buttonSide'>
+            className="buttonSide"
+          >
             Get Started
           </button>
           {user && user.role === "admin" && (
-          <button
+            <button
               onClick={() => deleteHandler(course._id)}
-              className="buttonSide"
-              style={{ background: "red" }}
+              className="buttonSide buttonDelete"
             >
               Delete
             </button>
           )}
-
-
-
         </div>
+
       </div>
     </div>
   );

@@ -1,23 +1,30 @@
-import React from "react";
-import { useState , useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import plantImage from "./plant-image.png";
 import './faq.css';
 import { server } from "../../main";
 import Groq from "groq-sdk";
 import axios from 'axios';
-
-
-
+import AOS from 'aos';  // Import AOS
+import "aos/dist/aos.css";  // Import AOS CSS
 
 const Faq = () => {
     const [allQnas, setAllQnas] = useState([]);
     const [question, setQuestion] = useState("");
     const [loading, setLoading] = useState(false);
-    
+
+    // Initialize AOS
+    useEffect(() => {
+        AOS.init({
+            duration: 1000,
+            once: true, // Ensures animations happen once when element is in view
+            easing: "ease-in-out", // Smooth animation easing
+        });
+    }, []);
+
     // Fetch AI Answer from Groq SDK
     const groq = new Groq({
         apiKey: "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",
-        dangerouslyAllowBrowser: true 
+        dangerouslyAllowBrowser: true,
     });
 
     // Fetch AI Answer
@@ -25,7 +32,7 @@ const Faq = () => {
         setLoading(true);
         try {
             const chatCompletion = await groq.chat.completions.create({
-                messages: [{ role: "user", content: `${userQuestion} .Maximum Wordlimit 270` }],
+                messages: [{ role: "user", content: `${userQuestion} .Maximum Wordlimit 300` }],
                 model: "llama3-8b-8192",
             });
             const aiAnswer = chatCompletion.choices[0]?.message?.content || "No answer available.";
@@ -57,14 +64,11 @@ const Faq = () => {
     const handleAddQuestion = async () => {
         if (question.trim()) {
             const aiAnswer = await fetchAIAnswer(question);
-            const newQna = { q: question, a: aiAnswer };
+            const newQna = { question, answer: aiAnswer };
 
             // Save to MongoDB
             try {
-                await axios.post(`${server}/api/faqs`, {
-                    question: question,
-                    answer: aiAnswer,
-                });
+                await axios.post(`${server}/api/faqs`, newQna);
                 console.log("FAQ saved to the server");
 
                 // Update local state with new QnA
@@ -77,51 +81,52 @@ const Faq = () => {
     };
 
     return (
-            <div className="container-fluid">
-                <div className="row faq">
+        <div className="container-fluid">
+            <div className="row faq">
                 {/* Left Column */}
-                <div className="col-lg-4 col-md-5 col-sm-12 faq-left">
+                <div className="col-lg-4 col-md-5 col-sm-12 faq-left" data-aos="fade-right">
                     <h1 className="faq-title">
-                    Frequently <br />
-                    <span className="asked">Asked</span> <br />
-                    Questions
+                        Frequently <br />
+                        <span className="asked">Asked</span> <br />
+                        Questions
                     </h1>
                     <div className="faq-illustration">
-                    <img src={plantImage} alt="Plant illustration" />
+                        <img src={plantImage} alt="Plant illustration" />
                     </div>
                 </div>
-    
-                {/* middle Column */}
-                <div className="col-lg-8 col-md-5 col-sm-12 qnas" >
-                {allQnas.map((qna, index) => (
-                    <div className="qna" key={index}>
-                    <h4>Q{index+1}. {qna.question}</h4>
-                    <p>{qna.answer}</p>
-                    </div>
+
+                {/* Middle Column */}
+                <div className="col-lg-8 col-md-7 col-sm-12 qnas">
+                    {allQnas.map((qna, index) => (
+                        <div className="qna" key={index} data-aos="fade-up">
+                            <h4>Q{index + 1}. {qna.question}</h4>
+                            <p>{qna.answer}</p>
+                        </div>
                     ))}
                 
-                <div className="add-question">
-                    <h4>Something On Your Mind? Ask here!</h4>
-                    <div className="add-quetion-input-btn">
-                    <input
-                        type="text"
-                        placeholder="Enter your question"
-                        value={question}
-                        onChange={(e) => setQuestion(e.target.value)}
-                        className="question-input"
-                        />
-                        <button
-                            onClick={handleAddQuestion}
-                            className="add-question-button"
-                            disabled={loading}
+                    <div className="add-question" data-aos="fade">
+                        <h4>Something On Your Mind? Ask here!</h4>
+                        <div className="add-quetion-input-btn">
+                            <input
+                                type="text"
+                                placeholder="Enter your question"
+                                value={question}
+                                onChange={(e) => setQuestion(e.target.value)}
+                                className="question-input"
+                            />
+                            <button
+                                onClick={handleAddQuestion}
+                                className="add-question-button"
+                                disabled={loading}
                             >
-                            {loading ? "Fetching Answer..." : "Ask Us!"}
-                        </button>
+                                {loading ? "Fetching Answer..." : "Ask Us!"}
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-)};
+    );
+};
 
 export default Faq;
