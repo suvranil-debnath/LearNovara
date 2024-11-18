@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import { TiTick } from "react-icons/ti";
 import { FaTrash, FaPaperPlane } from "react-icons/fa";
 import YouTube from "react-youtube";
+import Collapsible from 'react-collapsible';
 import { Innertube } from "youtubei.js/web";
 import Groq from "groq-sdk";
 
@@ -262,13 +263,8 @@ const Lecture = ({ user }) => {
             </div>
 
             <div className="right">
-              {user && user.role === "admin" && (
-                <button onClick={() => setShow(!show)}>
-                  {show ? "Close" : "Add Lecture +"}
-                </button>
-              )}
-
-              {show && (
+              {user && (user.role === "tutor" || user.role === "admin") && (
+                <Collapsible trigger={show ? "Close" : "Add Lecture +"} onOpening={() => setShow(true)} onClosing={() => setShow(false)}>
                 <div className="lecture-form">
                   <h2>Add Lecture</h2>
                   <form onSubmit={submitHandler}>
@@ -298,7 +294,8 @@ const Lecture = ({ user }) => {
                     </button>
                   </form>
                 </div>
-              )}
+              </Collapsible>
+            )}
 
               <div className="lecture-list-grid">
                 {lectures && lectures.length > 0 ? (

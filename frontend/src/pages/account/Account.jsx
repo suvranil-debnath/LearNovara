@@ -51,7 +51,7 @@ const Account = ({ user }) => {
             )}
             {user.role === "tutor" && (
               <button
-                onClick={() => navigate(`/admin/course`)}
+                onClick={() => navigate(`/tutor/course`)}
                 className="com-btn admin-btn"
               >
                 <MdOutlineCreateNewFolder />

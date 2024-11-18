@@ -22,6 +22,7 @@ import AdminCourses from "./admin/Courses/AdminCourses";
 import AdminUsers from "./admin/Users/AdminUsers";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ResetPassword from "./pages/auth/ResetPassword";
+import TutorCourses from "./tutor/TutorCourses";
 
 
 const App = () =>{
@@ -92,6 +93,11 @@ const App = () =>{
               path="/admin/users"
               element={isAuth ? <AdminUsers user={user} /> : <Login />}
             />
+            <Route
+              path="/tutor/course"
+              element={isAuth ? <TutorCourses user={user} /> : <Login />}
+            />
+            <Route/>
           </Routes>
         </BrowserRouter>
       )}
