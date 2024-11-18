@@ -1,5 +1,5 @@
 import React from "react";
-import { MdDashboard } from "react-icons/md";
+import { MdDashboard , MdOutlineCreateNewFolder } from "react-icons/md";
 import "./account.css";
 import { IoMdLogOut } from "react-icons/io";
 import { UserData } from "../../context/UserContext";
@@ -47,6 +47,15 @@ const Account = ({ user }) => {
               >
                 <MdDashboard />
                 Admin Dashboard
+              </button>
+            )}
+            {user.role === "tutor" && (
+              <button
+                onClick={() => navigate(`/admin/course`)}
+                className="com-btn admin-btn"
+              >
+                <MdOutlineCreateNewFolder />
+                Create Course
               </button>
             )}
 
