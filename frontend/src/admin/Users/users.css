@@ -137,3 +137,7 @@
     text-align: center;
   }
 }
+
+.image-upload-input {
+  margin-right: 10px;
+}
