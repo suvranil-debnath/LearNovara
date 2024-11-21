@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  userProgress,
   forgotPassword,
   loginUser,
   myProfile,
@@ -18,6 +19,7 @@ router.post("/user/login", loginUser);
 router.get("/user/me", isAuth, myProfile);
 router.post("/user/forgot", forgotPassword);
 router.post("/user/reset", resetPassword);
+router.get("/progress/:courseId", userProgress);
 router.post("/user/progress", isAuth, addProgress);
 router.get("/user/progress", isAuth, getYourProgress);
 

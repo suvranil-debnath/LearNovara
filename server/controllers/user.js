@@ -3,6 +3,9 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import sendMail, { sendForgotMail } from "../middlewares/sendMail.js";
 import TryCatch from "../middlewares/TryCatch.js";
+import { Lecture } from "../models/Lecture.js";
+import { Progress } from "../models/Progress.js";
+import { Courses } from "../models/Courses.js";
 
 export const register = TryCatch(async (req, res) => {
   const { email, name, password } = req.body;
@@ -164,3 +167,34 @@ export const resetPassword = TryCatch(async (req, res) => {
 
   res.json({ message: "Password Reset" });
 });
+
+export const userProgress = TryCatch(async (req, res) => {
+    const { courseId } = req.params;
+    const progress = await Progress.find({
+      course: courseId,
+    });
+
+    if (!progress) return res.status(404).json({ message: "null" });
+
+    const allLecturesCount = (await Lecture.find({ course: courseId })).length;
+    const alllectures = (await Lecture.find({ course: courseId }));
+  
+    const completedLectures = progress[0].completedLectures.length;
+  
+    const courseProgressPercentage = (completedLectures * 100) / allLecturesCount;
+
+
+   const lecTitles = []
+    alllectures.map((e) => {
+      lecTitles.push(e.title)
+    })
+
+    res.json({
+      courseProgressPercentage,
+      completedLectures,
+      allLecturesCount,
+      lecTitles
+    });
+});
+
+
