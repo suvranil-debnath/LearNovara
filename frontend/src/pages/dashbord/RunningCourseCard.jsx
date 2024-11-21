@@ -3,14 +3,11 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import "./runningCourseCard.css";
 import { server } from "../../main";
-import { useNavigate  , useParams} from "react-router-dom";
+import { useNavigate , Link  , useParams} from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
 
 const RunningCourseCard = ({ course }) => {
-    useEffect(() => {
-        AOS.init({ duration: 1000 });
-    }, []);
     
     const [completed, setCompleted] = useState(0);
     const [completedLec, setCompletedLec] = useState(0);
@@ -35,21 +32,22 @@ const RunningCourseCard = ({ course }) => {
 
     useEffect(() => {
         fetchProgress();
+        AOS.init({ duration: 1000 });
     }, []);
 
     return (
-        <div className="runningcourse-card">
+        <div className="runningcourse-card" data-aos="fade-up">
             <div className="runningcourse-card-left">
             <h4>COURSE</h4>
             <h2>{course.title}</h2>
             <p>By - {course.createdBy}</p>
-            <a href="#view-all-chapters" className="runningcourse-view-link">
+            <Link to={`/course/${course._id}`} className="runningcourse-view-link">
                 View all chapters &gt;
-            </a>
+            </Link>
             </div>
             <div className="runningcourse-card-right">
             <div>
-            <h5>LECTURE {completedLec}</h5>
+            <h5>LECTURE {completedLec+1}</h5>
             <h3>{lecList[completedLec]}</h3>
             <div className="runningcourse-progress-bar">
                 <div
