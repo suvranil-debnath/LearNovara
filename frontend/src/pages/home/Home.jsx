@@ -37,7 +37,7 @@ const Home = () => {
     const navigate = useNavigate();
     return (
         <>
-            <div className='row bar' data-aos="fade-down">
+            <div className='row bar' data-aos="fade">
                 <div className="col-lg-5 col-md-9 col-sm-12 search-bar">
                     <input type="text" placeholder="Search Courses" />
                     <button type="submit"><FiSearch className='search-icon'/></button>
@@ -45,7 +45,7 @@ const Home = () => {
             </div>
 
             <div className="row intro-section">
-                <div className="col-lg-5 col-md-7 col-sm-12 intro-text" data-aos="fade-right">
+                <div className="col-lg-5 col-md-7 col-sm-12 intro-text">
                     <h3 ref={el}></h3>
                 </div>
 
