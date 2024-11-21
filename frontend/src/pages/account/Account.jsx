@@ -33,7 +33,7 @@ const Account = ({ user }) => {
             </div>
             <div>
             <button
-              onClick={() => navigate(`/${user._id}/dashboard`)}
+              onClick={() => navigate(`/dashboard/${user._id}`)}
               className="com-btn"
             >
               <MdDashboard />

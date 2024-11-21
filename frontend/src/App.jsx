@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import "aos/dist/aos.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Chat from "./components/Chat/Chat";
 import Home from "./pages/home/Home";
@@ -67,7 +68,7 @@ const App = () =>{
               element={isAuth ? <PaymentSuccess user={user} /> : <Login />}
             />
             <Route
-              path="/:id/dashboard"
+              path="dashboard/:id"
               element={isAuth ? <Dashbord user={user} /> : <Login />}
             />
             <Route

@@ -1,0 +1,107 @@
+
+  .runningcourse-card {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5px;
+    flex: 1;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    font-family: "Arial", sans-serif;
+  }
+  
+  .runningcourse-card-left {
+    background-color: #3b2675;
+    color: #fff;
+    padding: 20px;
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  .runningcourse-card-left h4 {
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  
+  .runningcourse-card-left h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limits to 2 lines */
+    -webkit-box-orient: vertical;
+}
+
+  
+  .runningcourse-view-link {
+    font-size: 14px;
+    color: #c1b3ff;
+    text-decoration: none;
+  }
+  
+  .runningcourse-view-link:hover {
+    text-decoration: underline;
+  }
+  
+  .runningcourse-card-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    flex: 2;
+    min-width: 330px;
+  }
+  
+  .runningcourse-card-right h5 {
+    font-size: 12px;
+    color: #666;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  
+  .runningcourse-card-right h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  
+  .runningcourse-progress-bar {
+    background-color: #f0f0f0;
+    height: 6px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  
+  .runningcourse-progress {
+    background-color: #5e42a6;
+    height: 100%;
+    transition: width 0.5s ease;
+  }
+  
+  .runningcourse-challenge-text {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 15px;
+  }
+  
+  .runningcourse-continue-button {
+    background-color: #5e42a6;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-self:end;
+  }
+  
+  .runningcourse-continue-button:hover {
+    background-color: #47318d;
+  }
+  

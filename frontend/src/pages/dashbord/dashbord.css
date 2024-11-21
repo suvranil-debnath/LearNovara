@@ -1,7 +1,7 @@
 /* Container Styling */
 .student-dashboard {
   padding: 80px 20px;
-  min-height: 90vh;
+  min-height: 92vh;
   text-align: center;
   background: linear-gradient(to bottom, #f0f4ff, #d8e2ff);
 }
@@ -31,9 +31,8 @@
 
 /* Grid for Course Cards */
 .dashboard-content {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
+  display:flex;
+  flex-wrap: wrap;
   padding-top: 1rem;
   justify-items: center;
 }
