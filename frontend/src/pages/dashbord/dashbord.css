@@ -1,7 +1,6 @@
 /* Container Styling */
 .student-dashboard {
   padding: 80px 20px;
-  min-height: 92vh;
   text-align: center;
   background: linear-gradient(to bottom, #f0f4ff, #d8e2ff);
 }

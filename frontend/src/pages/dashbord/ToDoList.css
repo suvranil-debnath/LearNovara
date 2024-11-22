@@ -1,0 +1,214 @@
+.todo-container {
+  padding: 20px;
+  max-width: fit-content;
+  margin: 20px 0;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Task Status Styles */
+.task-status {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.status-card {
+  flex: 1;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 14px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  color: white;
+}
+
+.status-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.status-card.red {
+  background-color: #e63946;
+}
+
+.status-card.yellow {
+  background-color: #ffba08;
+}
+
+.status-card.green {
+  background-color: #4caf50;
+}
+
+.status-label {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.status-count {
+  font-size: 16px;
+}
+
+/* Add New Task Section */
+.add-task {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  align-items: center;
+}
+
+.add-task input {
+  flex: 1;
+  margin-top: 16px;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.add-task input:focus {
+  outline: none;
+  border-color: #4caf50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+.addtask-btn {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.addtask-btn:hover {
+  background-color: #45a049;
+}
+
+/* Recent Tasks Section */
+.recent-tasks-title {
+  font-size: 20px;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.task-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.task-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.task-details {
+  flex: 1;
+}
+
+.task-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.task-tasks {
+  font-size: 14px;
+  color: #666;
+}
+
+.task-progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Progress Circle Styles */
+.progress-circle {
+  width: 50px;
+  height: 50px;
+  transform: rotate(-90deg);
+}
+
+.progress-bg {
+  fill: none;
+  stroke: #e0e0e0;
+  stroke-width: 3;
+}
+
+.progress-bar {
+  fill: none;
+  stroke: #4caf50;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 0, 100;
+  transition: stroke-dasharray 0.4s ease;
+}
+
+.progress-percentage {
+  position: absolute;
+  font-size: 12px;
+  margin-top: 15px;
+  margin-left: 2px;
+  color: #333;
+}
+
+.Collapsible{
+  background: transparent;
+}
+
+
+/* Subtask Popup */
+.subtasks-list{
+  display: flex;
+  flex-direction: column;
+}
+.subtask {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.subtask-check{
+  width: fit-content;
+  margin: 0;
+  padding: 0;
+}
+.completed {
+  text-decoration: line-through;
+  color: #999;
+}
+.delete-task{
+  background: transparent;
+  color: red;
+  font-size: 25px;
+}
+.delete-subtask {
+  background: none;
+  border: none;
+  color: #e63946;
+  font-size: 14px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.delete-subtask:hover {
+  color: #c82333;
+}
+
+

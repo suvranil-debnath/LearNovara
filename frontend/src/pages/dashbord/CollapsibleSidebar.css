@@ -1,0 +1,21 @@
+.sidebar-toggle {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1000;
+  }
+  
+  .sidebar-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+  }
+  
+  .sidebar-content {
+    margin-left: 60px; /* Adjust based on sidebar width */
+  }
+  
+  .scheduling-section, .todo-section {
+    padding: 20px;
+  }
+  
