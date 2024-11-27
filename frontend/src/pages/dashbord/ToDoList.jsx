@@ -231,7 +231,7 @@ const ToDoList = ({ userId }) => {
                     </svg>
                     <p className="progress-percentage">
                       {task.progress !== undefined
-                        ? Math.abs(task.progress.toFixed(2))
+                        ? task.progress.toFixed(0)
                         : "00"}
                       %
                     </p>

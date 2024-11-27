@@ -3,6 +3,8 @@
   padding: 80px 20px;
   text-align: center;
   background: linear-gradient(to bottom, #f0f4ff, #d8e2ff);
+  display: flex;
+  justify-content: space-evenly;
 }
 
 /* Title Styling */
@@ -43,59 +45,71 @@
   padding: 2rem;
 }
 
-/* Course Card Styling */
 
-
-/* Card Hover Effect */
-.course-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.15);
-}
-
-/* Course Card Image */
-.course-card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-bottom: 1px solid #f0f0f0;
-}
-
-/* Course Card Content */
-.course-card-content {
+/* Sidebar Styles */
+.side-tools {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 98vw;
+  background-color: #fff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
   padding: 20px;
-  color: #333;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  background: rgb(221, 221, 221);
+  
+::-webkit-scrollbar {
+  width: 0;
+}
 }
 
-/* Course Title */
-.course-card-title {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #34495e;
-  margin-bottom: 8px;
+.side-tools.open {
+  transform: translateX(0);
 }
 
-/* Course Description */
-.course-card-description {
-  font-size: 0.95rem;
-  color: #7b8a97;
-  line-height: 1.5;
-  margin-bottom: 12px;
+.tools-content {
+  margin-top: 2rem;
+  overflow-y: auto;
 }
 
-/* Card Button */
-.course-card-button {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #6c5ce7;
-  color: #ffffff;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  text-align: center;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
+.sidebar-toggle {
+  position: absolute;
+  top: 48vh;
+  right: -22px;
+  background: #00000082;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: ease 0.2s;
+  font-size: 1.5rem;
+}
+.sidebar-toggle:hover{
+  background: #000000f1;
 }
 
-.course-card-button:hover {
-  background-color: #574bce;
+/* Adjustments for Larger Screens */
+@media (min-width: 768px) {
+  .side-tools {
+    position: static;
+    transform: translateX(0);
+    height: auto;
+    flex-direction: row;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .sidebar-toggle {
+    display: none;
+  }
 }
