@@ -161,7 +161,7 @@
 }
 
 .progress-percentage {
-  position: fixed;
+  position: fixed !important;
   font-size: 12px;
   margin-top: 15px;
   margin-left: 2px;
