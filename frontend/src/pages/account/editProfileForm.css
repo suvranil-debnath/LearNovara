@@ -1,0 +1,75 @@
+.edit-profile-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .edit-profile-container {
+    background: #fff;
+    border-radius: 16px;
+    padding: 30px;
+    width: 400px;
+    max-width: 90%;
+    max-height: 80%;
+    overflow-y: auto;
+  }
+  
+  .edit-profile-container h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+  
+  .save-btn {
+    background-color: #6c5ce7;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+  }
+  
+  .save-btn:hover {
+    background-color: #574bce;
+  }
+  
+  .close-btn {
+    background: transparent;
+    color: #333;
+    border: none;
+    font-size: 1rem;
+    margin-top: 10px;
+    cursor: pointer;
+    justify-self: end;
+    text-align:right;
+    display: block;
+  }
+  

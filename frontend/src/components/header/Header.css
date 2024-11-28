@@ -1,4 +1,7 @@
-
+.lnav{
+    font-family: 'Poppins', sans-serif;
+  color: #444;
+}
 .logo{
   display: flex;
   flex-direction:row;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Header.css';
+import Chat from "../Chat/Chat";
 
 import bulblogo from './bulblogo.png';
 import { TbMenuOrder } from "react-icons/tb";
@@ -13,7 +14,7 @@ const Header = ({ isAuth }) => {
   };
 
   return (
-    <div className="container-fluid p-3">
+    <div className="container-fluid p-3 lnav">
       <div className="row align-items-center">
         {/* Logo Section */}
         <div onClick={handleHomeClick} className="col-lg-3 col-md-3 col-sm-12 logo">
@@ -45,6 +46,12 @@ const Header = ({ isAuth }) => {
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link" to={"/courses"}>Courses</Link>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href='#tutor-section'>Tutors</a>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to={"/about"}><Chat/></Link>
                 </li>
               </ul>
             </div>

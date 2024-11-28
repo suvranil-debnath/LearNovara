@@ -1,12 +1,16 @@
-import React from "react";
-import { MdDashboard , MdOutlineCreateNewFolder } from "react-icons/md";
-import "./account.css";
+import React, { useState } from "react";
+import { IoMdCreate } from "react-icons/io";
+import { MdDashboard, MdOutlineCreateNewFolder } from "react-icons/md";
 import { IoMdLogOut } from "react-icons/io";
+import "./account.css";
+import EditProfileForm from "./EditProfileForm";
 import { UserData } from "../../context/UserContext";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-
 const Account = ({ user }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const imgplaceholder = "https://avatar.iran.liara.run/public/46";
+
   const { setIsAuth, setUser } = UserData();
   const navigate = useNavigate();
 
@@ -17,29 +21,38 @@ const Account = ({ user }) => {
     toast.success("Logged Out");
     navigate("/login");
   };
-
   return (
     <div className="account-container">
       {user && (
-        <div className="profile">
-          <h2>My Profile</h2>
-          <div className="profile-info">
-            <p>
-              <strong>Name:</strong> {user.name}
-            </p>
-            <p>
-              <strong>Email:</strong> {user.email}
-            </p>
+        <div className="profile-card-large">
+          <div className="profile-header">
+            <div className="avatar">
+              <img
+                src={imgplaceholder}
+                alt="Profile Avatar"
+                className="profile-image"
+              />
             </div>
-            <div>
             <button
+              className="edit-btn"
+              onClick={() => setIsEditing(true)}
+              title="Edit Profile"
+            >
+              <IoMdCreate />
+            </button>
+          </div>
+          <div className="profile-details">
+            <h3>{user.name}</h3>
+            <p className="email">{user.email}</p>
+          </div>
+          <div className="profile-actions">
+          <button
               onClick={() => navigate(`/dashboard/${user._id}`)}
               className="com-btn"
             >
               <MdDashboard />
               Dashboard
             </button>
-
             {user.role === "admin" && (
               <button
                 onClick={() => navigate(`/admin/dashboard`)}
@@ -58,7 +71,6 @@ const Account = ({ user }) => {
                 Create Course
               </button>
             )}
-
             <button
               onClick={logoutHandler}
               className="com-btn logout-btn"
@@ -68,6 +80,13 @@ const Account = ({ user }) => {
             </button>
           </div>
         </div>
+      )}
+
+      {isEditing && (
+        <EditProfileForm
+          user={user}
+          closeHandler={() => setIsEditing(false)}
+        />
       )}
     </div>
   );

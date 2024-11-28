@@ -47,7 +47,7 @@ const TutorsPage = () => {
     }
 
     return (
-        <div className="tutors-page" data-aos="fade">
+        <div className="tutors-page" data-aos="fade" id="tutor-section">
         {/* Header Section */}
         <div className="header-section">
             <h1>Meet Our Popular Tutors</h1>

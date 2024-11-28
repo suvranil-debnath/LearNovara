@@ -229,12 +229,12 @@ const ToDoList = ({ userId }) => {
                         }}
                       />
                     </svg>
-                    <div className="progress-percentage">
+                    <p className="progress-percentage">
                       {task.progress !== undefined
                         ? task.progress.toFixed(0)
                         : "00"}
                       %
-                    </div>
+                    </p>
                   </div>
                   <button
                     className="delete-task"
