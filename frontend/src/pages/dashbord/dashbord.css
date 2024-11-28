@@ -1,10 +1,11 @@
 /* Container Styling */
 .student-dashboard {
-  padding: 80px 20px;
+  padding: 30px 20px;
   text-align: center;
   background: linear-gradient(to bottom, #f0f4ff, #d8e2ff);
   display: flex;
   justify-content: space-evenly;
+  gap:15px;
 }
 
 /* Title Styling */
@@ -52,17 +53,17 @@
   top: 0;
   left: 0;
   height: 100vh;
-  width: 98vw;
-  background-color: #fff;
+  max-width: 98vw;
+  min-width: 400px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   padding: 20px;
   transform: translateX(-100%);
   transition: transform 0.3s ease-in-out;
   display: flex;
-  flex-direction: column;
-  background: rgb(221, 221, 221);
-  
+  flex-direction: column;  
+  background:linear-gradient(to bottom, #f0f4ff, #d8e2ff);
+
 ::-webkit-scrollbar {
   width: 0;
 }
@@ -73,14 +74,13 @@
 }
 
 .tools-content {
-  margin-top: 2rem;
   overflow-y: auto;
 }
 
 .sidebar-toggle {
   position: absolute;
   top: 48vh;
-  right: -22px;
+  right: -23px;
   background: #00000082;
   color: #fff;
   border: none;
@@ -107,7 +107,7 @@
     flex-direction: row;
     box-shadow: none;
     padding: 0;
-  }
+   }
 
   .sidebar-toggle {
     display: none;

@@ -161,11 +161,12 @@
 }
 
 .progress-percentage {
-  position: fixed !important;
+  position: relative;
+  z-index: 1;
   font-size: 12px;
-  margin-top: 15px;
   margin-left: 2px;
   color: #333;
+  top:-33px
 }
 
 .Collapsible{
