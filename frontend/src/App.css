@@ -1,6 +1,17 @@
+html{
+  scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+}
+
+
 
 ::-webkit-scrollbar {
-  width: 20px;
+  width: 17px;
 }
 
 ::-webkit-scrollbar-track {
@@ -32,16 +43,6 @@ cursor: pointer;
 
 
 
-
-body {
-  scroll-behavior: smoothS;
-  margin: 0;
-  padding: 0;
-  /* box-sizing: border-box; */
-  display: flex;
-  flex-direction: column;
-  font-family: Arial, sans-serif;
-}
 
 
 .common-btn {
