@@ -9,7 +9,6 @@
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-
 }
 
 .about-content,
@@ -37,25 +36,25 @@
 }
 
 .about-content h2 {
-  font-size: 3rem;
+  font-size: clamp(2rem, 5vw, 3rem); /* Dynamically scale between 2rem and 3rem */
   color: #2f3b52;
 }
 
 .about h3 {
-  font-size: 2.5rem;
+  font-size: clamp(1.8rem, 4vw, 2.5rem); /* Dynamically scale between 1.8rem and 2.5rem */
   color: #2d3e50;
   margin-bottom: 1rem;
   text-transform: uppercase;
 }
 
 .about p {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 3vw, 2rem); /* Dynamically scale between 1.5rem and 2rem */
   line-height: 1.8;
   color: #666;
 }
 
 .about ul {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 3vw, 2rem); /* Dynamically scale between 1.5rem and 2rem */
   line-height: 1.8;
   color: #666;
 }
@@ -74,8 +73,9 @@
   flex: 1;
   text-align: right; /* Align image to the right */
 }
-.title-logo{
-  font-size: 40px;
+
+.title-logo {
+  font-size: clamp(2rem, 5vw, 3rem); /* Dynamically scale logo font size */
 }
 
 .about-icon-student img,
@@ -85,7 +85,7 @@
   max-width: 400px;
   border-radius: 8px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-  margin-right:50px ;
+  margin-right: 50px;
 }
 
 .about-text {
@@ -102,4 +102,30 @@
 [data-aos].aos-animate {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .about-content,
+  .about-students,
+  .about-tutors,
+  .about-vision {
+    flex-direction: column; /* Stack sections vertically on smaller screens */
+  }
+
+  .about-icon {
+    text-align: center; /* Center-align icons */
+    margin-bottom: 2rem;
+  }
+
+  .about-icon img {
+    width: 100%; /* Make images fill container width */
+    max-width: 300px;
+    margin-right: 0;
+  }
+
+  .about-text {
+    padding-right: 0;
+    text-align: center; /* Center-align text */
+  }
 }
