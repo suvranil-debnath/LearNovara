@@ -7,10 +7,14 @@ const router = express.Router();
 router.get("/:userId", async (req, res) => {
   try {
     const { userId } = req.params;
-    const toDoList = await ToDoList.findOne({ userId });
+    let toDoList = await ToDoList.findOne({ userId });
+
+    // If no ToDoList exists, create a new one
     if (!toDoList) {
-      return res.status(404).json({ message: "ToDo list not found" });
+      toDoList = new ToDoList({ userId, tasks: [] });
+      await toDoList.save();
     }
+
     res.status(200).json(toDoList);
   } catch (error) {
     res.status(500).json({ message: error.message });
