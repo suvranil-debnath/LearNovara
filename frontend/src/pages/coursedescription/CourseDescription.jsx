@@ -93,6 +93,7 @@ const CourseDescription = ({ user }) => {
     const razorpay = new window.Razorpay(options);
     razorpay.open();
   };
+  const isGoogleDriveLink = course.image && course.image.includes("drive.google.com");
 
   return (
     <div className="wrap">
@@ -105,7 +106,7 @@ const CourseDescription = ({ user }) => {
               <div className="course-header">
                 <div className="course-thumbnail">
                   <img
-                    src={`${server}/${course.image}`}
+                   src={isGoogleDriveLink ? course.image : `${server}/${course.image}`} 
                     alt="Course Thumbnail"
                     className="course-image"
                   />

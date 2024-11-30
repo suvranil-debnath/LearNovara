@@ -21,7 +21,7 @@ const TutorsPage = () => {
 
         const fetchedTutors = data.tutors.map((tutor) => ({
             name: tutor.userid?.name || "No Name Available",
-            image: tutor.profilepic ? `${server}/${tutor.profilepic}` : img,
+            image: tutor.profilepic ? `${tutor.profilepic}` : img,
         }));
 
         setTutors(fetchedTutors);
@@ -47,7 +47,7 @@ const TutorsPage = () => {
     }
 
     return (
-        <div className="tutors-page" data-aos="fade" id="tutor-section">
+        <div className="tutors-page" data-aos="fade">
         {/* Header Section */}
         <div className="header-section">
             <h1>Meet Our Popular Tutors</h1>

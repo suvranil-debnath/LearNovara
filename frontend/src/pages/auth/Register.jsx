@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./auth.css";
 import { Link, useNavigate } from "react-router-dom";
 import { UserData } from "../../context/UserContext";
+import WebcamStream from "../../components/face/WebcamStream";
+import RegisterFace from "../../components/face/RegisterFace";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -9,43 +11,86 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [faceDescriptor, setFaceDescriptor] = useState(null);
+  const [isFaceRegisterEnabled, setIsFaceRegisterEnabled] = useState(false);
+  const [stream, setStream] = useState(null);
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    await registerUser(name, email, password, navigate);
+    await registerUser(name, email, password, faceDescriptor, navigate);
   };
+
+  useEffect(() => {
+    return () => {
+      if (stream) {
+        const tracks = stream.getTracks();
+        tracks.forEach((track) => track.stop());
+      }
+    };
+  }, [stream]);
+
+  const handleFaceRegisterChange = (e) => {
+    setIsFaceRegisterEnabled(e.target.checked);
+
+    if (!e.target.checked && stream) {
+      const tracks = stream.getTracks();
+      tracks.forEach((track) => track.stop());
+      setStream(null);
+    }
+  };
+
   return (
     <div className="auth-page">
       <div className="auth-form">
         <h2>Register</h2>
         <form onSubmit={submitHandler}>
-          <input placeholder="Name"
+          <input
+            placeholder="Name"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
           />
-
-          <input placeholder="Email"
+          <input
+            placeholder="Email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-
           <input
-            type="password" placeholder="Password"
+            type="password"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
+
+          <div className="face-register-checkbox">
+            <label>
+              <input
+                type="checkbox"
+                checked={isFaceRegisterEnabled}
+                onChange={handleFaceRegisterChange}
+              />
+              Register with Face (Optional)
+            </label>
+          </div>
+
+          {isFaceRegisterEnabled && (
+            <div className="webcam-container">
+              <h3>Optional: Register Your Face</h3>
+              <WebcamStream setStream={setStream} />
+              <RegisterFace setFaceDescriptor={setFaceDescriptor} />
+            </div>
+          )}
 
           <button type="submit" disabled={btnLoading} className="common-btn">
             {btnLoading ? "Please Wait..." : "Register"}
           </button>
         </form>
         <p>
-          have an account? <Link to="/login">Login</Link>
+          Have an account? <Link to="/login">Login</Link>
         </p>
       </div>
     </div>

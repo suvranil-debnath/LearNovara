@@ -29,9 +29,16 @@ const CourseCard = ({ course }) => {
       }
     }
   };
+
+  const isGoogleDriveLink = course.image && course.image.includes("drive.google.com");
+
   return (
     <div className="course-card">
-      <img src={`${server}/${course.image}`} alt="" className="course-image" />
+      <img 
+        src={isGoogleDriveLink ? course.image : `${server}/${course.image}`} 
+        alt="" 
+        className="course-image" 
+      />
       <h3>{course.title}</h3>
       <p>Instructor- {course.createdBy}</p>
       <p>Duration- {course.duration} weeks</p>

@@ -45,6 +45,7 @@ const CcourseCard = ({ course }) => {
     toast.success("Course link copied to clipboard!");
   };
 
+  const isGoogleDriveLink = course.image && course.image.includes("drive.google.com");
 
   return (
     <div className="course_card" data-aos="fade-up"   >
@@ -52,7 +53,7 @@ const CcourseCard = ({ course }) => {
       <div className="overlay">
         <div className="card-image">
           <img
-            src={`${server}/${course.image}`}
+            src={isGoogleDriveLink ? course.image : `${server}/${course.image}`} 
             alt={course.title}
             className="card-img"
           />
