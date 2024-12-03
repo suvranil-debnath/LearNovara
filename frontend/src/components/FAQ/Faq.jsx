@@ -4,125 +4,131 @@ import './faq.css';
 import { server } from "../../main";
 import Groq from "groq-sdk";
 import axios from 'axios';
-import AOS from 'aos';  // Import AOS
-import "aos/dist/aos.css";  // Import AOS CSS
+import AOS from 'aos';
+import "aos/dist/aos.css";
 
 const Faq = () => {
     const [allQnas, setAllQnas] = useState([]);
     const [question, setQuestion] = useState("");
     const [loading, setLoading] = useState(false);
+    const [expandedIndex, setExpandedIndex] = useState(null);
 
-    // Initialize AOS
     useEffect(() => {
         AOS.init({
-            duration: 1000,
-            once: true, // Ensures animations happen once when element is in view
-            easing: "ease-in-out", // Smooth animation easing
+            duration: 1200,
+            once: true,
+            easing: "ease-out",
         });
     }, []);
 
-    // Fetch AI Answer from Groq SDK
     const groq = new Groq({
         apiKey: "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",
         dangerouslyAllowBrowser: true,
     });
 
-    // Fetch AI Answer
     const fetchAIAnswer = async (userQuestion) => {
         setLoading(true);
         try {
             const chatCompletion = await groq.chat.completions.create({
-                messages: [{ role: "user", content: `${userQuestion} .Maximum Wordlimit 300` }],
+                messages: [{ role: "user", content: `${userQuestion}. Max 200 words , always give compact ans with rich information , do not give any points or break down give only single paragraph.` }],
                 model: "llama3-8b-8192",
             });
-            const aiAnswer = chatCompletion.choices[0]?.message?.content || "No answer available.";
-            return aiAnswer;
+            return chatCompletion.choices[0]?.message?.content || "No answer available.";
         } catch (error) {
             console.error("Error fetching AI answer:", error);
-            return "An error occurred while fetching the answer.";
+            return "Unable to retrieve the answer.";
         } finally {
             setLoading(false);
         }
     };
 
-    // Fetch QnAs from MongoDB on component load
     const fetchQnAsFromDatabase = async () => {
         try {
             const response = await axios.get(`${server}/api/faqs`);
-            setAllQnas(response.data); // Assuming the response is an array of QnAs
+            setAllQnas(response.data);
         } catch (error) {
-            console.error("Error fetching FAQs from the server:", error);
+            console.error("Error fetching FAQs:", error);
         }
     };
 
-    // UseEffect to load initial data
     useEffect(() => {
         fetchQnAsFromDatabase();
     }, []);
 
-    // Handler for adding a new question with AI answer
     const handleAddQuestion = async () => {
         if (question.trim()) {
             const aiAnswer = await fetchAIAnswer(question);
             const newQna = { question, answer: aiAnswer };
 
-            // Save to MongoDB
             try {
                 await axios.post(`${server}/api/faqs`, newQna);
-                console.log("FAQ saved to the server");
-
-                // Update local state with new QnA
                 setAllQnas((prevQnas) => [...prevQnas, newQna]);
                 setQuestion("");
             } catch (error) {
-                console.error("Error saving FAQ to the server:", error);
+                console.error("Error saving FAQ:", error);
             }
         }
     };
 
-    return (
-        <div className="container-fluid">
-            <div className="row faq">
-                {/* Left Column */}
-                <div className="col-lg-4 col-md-5 col-sm-12 faq-left" data-aos="fade-right">
-                    <h1 className="faq-title">
-                        Frequently <br />
-                        <span className="asked">Asked</span> <br />
-                        Questions
-                    </h1>
-                    <div className="faq-illustration">
-                        <img src={plantImage} alt="Plant illustration" />
-                    </div>
-                </div>
+    const toggleExpanded = (index) => {
+        setExpandedIndex(expandedIndex === index ? null : index);
+    };
 
-                {/* Middle Column */}
-                <div className="col-lg-8 col-md-7 col-sm-12 qnas">
-                    {allQnas.map((qna, index) => (
-                        <div className="qna" key={index} data-aos="fade-up">
+    return (
+        <div className="faq-page">
+            {/* Header Section */}
+            <div className="faq-header">
+                <div className="faq-header-content" data-aos="fade-right">
+                    <h1>
+                        Got <span>Questions?</span> <br />
+                        We've Got Answers.
+                    </h1>
+                    <p>Your common questions answered with AI-driven insights!</p>
+                </div>
+                <div className="faq-header-image" data-aos="fade-left">
+                    <img src={plantImage} alt="FAQ Illustration" />
+                </div>
+            </div>
+
+            {/* FAQ Content */}
+            <div className="faq-content">
+                {allQnas.map((qna, index) => (
+                    <div className="faq-item" key={index} data-aos="fade-up">
+                        <div className="faq-question">
                             <h4>Q{index + 1}. {qna.question}</h4>
-                            <p>{qna.answer}</p>
                         </div>
-                    ))}
-                
-                    <div className="add-question" data-aos="fade">
-                        <h4>Something On Your Mind? Ask here!</h4>
-                        <div className="add-quetion-input-btn">
-                            <input
-                                type="text"
-                                placeholder="Enter your question"
-                                value={question}
-                                onChange={(e) => setQuestion(e.target.value)}
-                                className="question-input"
-                            />
-                            <button
-                                onClick={handleAddQuestion}
-                                className="add-question-button"
-                                disabled={loading}
-                            >
-                                {loading ? "Fetching Answer..." : "Ask Us!"}
+                        <div className={`faq-answer ${expandedIndex === index ? "expanded" : ""}`}>
+                            <p>
+                                {expandedIndex === index
+                                    ? qna.answer
+                                    : `${qna.answer.substring(0, 200)}...`}
+                            </p>
+                            <button onClick={() => toggleExpanded(index)}>
+                                {expandedIndex === index ? "Show Less" : "Read More"}
                             </button>
                         </div>
                     </div>
+                ))}
+            </div>
+
+            {/* Ask a Question */}
+            <div className="faq-ask" data-aos="fade">
+                <h2>Have a question? Ask now!</h2>
+                <div className="faq-ask-input-group">
+                    <input
+                        type="text"
+                        placeholder="Type your question..."
+                        value={question}
+                        onChange={(e) => setQuestion(e.target.value)}
+                        disabled={loading}
+                    />
+                    <button
+                        onClick={handleAddQuestion}
+                        disabled={loading}
+                        className="faq-submit"
+                    >
+                        {loading ? "Processing..." : "Submit"}
+                    </button>
                 </div>
             </div>
         </div>

@@ -101,8 +101,8 @@ const DetectFace = ({ setStreamRef }) => {
         autoPlay
         muted
         style={{
-          width: "200px",
-          height: "150px",
+          maxWidth: "200px",
+          maxHeight: "150px",
           borderRadius: "10px",
           border: "2px solid #ccc",
         }}

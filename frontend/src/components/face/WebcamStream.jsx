@@ -26,7 +26,13 @@ const WebcamStream = ({ setStream }) => {
     };
   }, [setStream]);
 
-  return <video width="100%" autoPlay muted />;
+  return <video width="100%" style={{
+    maxWidth: "200px",
+    maxHeight: "150px",
+    borderRadius: "10px",
+    border: "2px solid #ccc",
+  }}
+  autoPlay muted />;
 };
 
 export default WebcamStream;

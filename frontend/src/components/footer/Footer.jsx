@@ -5,19 +5,26 @@ const Footer = () => {
   return (
     <>{/* Footer */}
         <footer className="footer">
-          <div className="footer-links">
-            <a href="#">About Us</a>
-            <a href="#">Help and Support</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Contact</a>
-          </div>
-          <div className="footer-mid">
-            <a href="#">Get The App</a>
-          </div>
-          <div className="footer-right">
-            <a href="#">Help And Support</a>
-            <a href="#">Privacy Policy</a>
-          </div>
+    
+        {/* Center Section */}
+        <div className="footer-center">
+          <h4 className="footer-links-title">LearNovara</h4>
+          <ul className="footer-links">
+            <li>
+              <a href="#">About Us</a>
+            </li>
+            <li>
+              <a href="#">Courses</a>
+            </li>
+            <li>
+              <a href="#">Privacy Policy</a>
+            </li>
+            <li>
+              <a href="#">Contact</a>
+            </li>
+          </ul>
+        </div>
+
           <div className="footer-social">
             <div className="sol-icon">
               <a className="socialContainer containerOne" href="#">

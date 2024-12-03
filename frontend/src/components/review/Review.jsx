@@ -1,144 +1,116 @@
-import love from "./tr-bg.png";
-import "./review.css";
-import wv1 from "../../assets/wave.png";
 import React, { useEffect } from "react";
+import "./review.css";
+import { motion } from "framer-motion";
+import { FaQuoteLeft, FaUsers, FaStar, FaShoppingCart, FaClock, FaGlobe, FaAward } from "react-icons/fa";
 import AOS from "aos";
-import "aos/dist/aos.css"; // Import AOS styles
+import "aos/dist/aos.css";
 
 const reviewers = [
   {
-    heading: "Heading1",
+    heading: "Outstanding Service!",
     ig: "https://avatar.iran.liara.run/public/67",
-    name: "Name 1",
-    desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
+    name: "John Doe",
+    desc: "The team provided exceptional support and made the entire process seamless.",
   },
   {
-    heading: "Heading1=2",
-    ig: "https://avatar.iran.liara.run/public/67",
-    name: "Name 1",
-    desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
+    heading: "Highly Recommended!",
+    ig: "https://avatar.iran.liara.run/public/68",
+    name: "Jane Smith",
+    desc: "I love the quality of the products and their dedication to customer satisfaction.",
   },
   {
-    heading: "Heading1=2",
-    ig: "https://avatar.iran.liara.run/public/67",
-    name: "Name 1",
-    desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
+    heading: "Top-notch Experience!",
+    ig: "https://avatar.iran.liara.run/public/69",
+    name: "Alice Johnson",
+    desc: "Absolutely brilliant! Their attention to detail is second to none.",
   },
   {
-    heading: "Heading1=2",
-    ig: "https://avatar.iran.liara.run/public/67",
-    name: "Name 1",
-    desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
-  },
-  {
-    heading: "Heading1=2",
-    ig: "https://avatar.iran.liara.run/public/67",
-    name: "Name 1",
-    desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
-  },
-  {
-    heading: "Heading1=2",
-    ig: "https://avatar.iran.liara.run/public/67",
-    name: "Name 1",
-    desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
+    heading: "Superb Quality!",
+    ig: "https://avatar.iran.liara.run/public/70",
+    name: "Bob Brown",
+    desc: "Fantastic quality and the delivery was right on time. Highly satisfied.",
   },
 ];
 
-const statistic = [
-  {
-    st: "15k",
-    info: "sadas dasddfg  dfadfasd",
-  },
-  {
-    st: "15k",
-    info: "sadas dasddfg  dfadfasd",
-  },
-  {
-    st: "15k",
-    info: "sadas dasddfg  dfadfasd",
-  },
-  {
-    st: "15k",
-    info: "sadas dasddfg  dfadfasd",
-  },
+const statistics = [
+  { icon: <FaUsers />, st: "15k+", info: "Happy Users" },
+  { icon: <FaStar />, st: "10k+", info: "5-Star Reviews" },
+  { icon: <FaShoppingCart />, st: "1M+", info: "Courses Sold" },
+  { icon: <FaClock />, st: "24/7", info: "Support Availability" },
+  { icon: <FaGlobe />, st: "50+", info: "Countries Served" },
+  { icon: <FaAward />, st: "500+", info: "Industry Awards" },
 ];
 
-const HeadLineCard = ({ content }) => {
-  return (
-    <div
-      className="rev-headline-card shadow-sm"
-      data-aos="slide-up"
-      data-aos-delay="50"
-    >
-      <div className="rev-bottom mt-2">
-        <span className="quote">&#8220;</span>
-        <p className="rev-content">
-          <span className="subtitle para">{content.desc}</span>
-        </p>
-      </div>
-
-      <div className="rev-head">
-        <div className="rev-content">
-          <img src={content.ig} alt={content.name} />
-          <h3 className="rev-headline">{content.name}</h3>
-        </div>
-      </div>
+const RevHeadLineCard = ({ content }) => (
+  <div className="rev-headline-card">
+    <FaQuoteLeft className="rev-quote-icon" />
+    <p className="rev-card-desc">{content.desc}</p>
+    <div className="rev-card-footer">
+      <img src={content.ig} alt={content.name} className="rev-head-avatar" />
+      <h3>{content.name}</h3>
     </div>
-  );
-};
+  </div>
+);
 
-const Stats = ({ stat }) => {
-  return (
-    <div className="stats" data-aos="fade-up" data-aos-delay="100">
-      <h2>{stat.st}</h2>
-      <p>{stat.info}</p>
-    </div>
-  );
-};
-
-const ReviewCard = () => {
-  return (
-    <div className="review-card" data-aos="zoom-in" data-aos-delay="200">
-      <div className="circle">
-        <img src={love} alt="love" className="love" />
-      </div>
-      {statistic.map((e, index) => (
-        <Stats key={index} stat={e} />
-      ))}
-    </div>
-  );
-};
+const RevStatCard = ({ stat }) => (
+  <div className="rev-stat-card">
+    <div className="rev-icon-container">{stat.icon}</div>
+    <h2>{stat.st}</h2>
+    <p>{stat.info}</p>
+  </div>
+);
 
 const Review = () => {
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
+
   return (
-    <div className="container-fluid review">
-      <div className="rev-top-view">
-        <div className="rev-left" data-aos="fade-right" data-aos-delay="50">
-          {reviewers.slice(0, 2).map((e, index) => (
-            <HeadLineCard key={index} content={e} />
+    <div className="rev-review-container">
+      <section className="rev-top-section">
+        <div className="rev-headline-cards" data-aos="fade-right">
+          {reviewers.slice(0, 2).map((review, index) => (
+            <RevHeadLineCard key={index} content={review} />
           ))}
         </div>
-        <div className="rev-right" data-aos="fade-left" data-aos-delay="150">
-          <h1 className="rev-heading-text">
-            Review <span className="transparent"> you </span> all shared
+        <div className="rev-review-summary" data-aos="fade-left">
+          <h1 className="rev-section-title">
+            What <span className="rev-highlight">People</span> Say
           </h1>
-          <ReviewCard />
-        </div>
-      </div>
-      <div className="rev-bottom-view">
-        <div className="rev-left" data-aos="slide-right" data-aos-delay="50">
-          <div className="rev-left-content">
-            <img src={wv1} alt="Wave" />
-            <button className="rev-btn">More</button>
-            <img src={wv1} alt="Wave" />
+          <div className="rev-stats-grid">
+            {statistics.map((stat, index) => (
+              <RevStatCard key={index} stat={stat} />
+            ))}
           </div>
         </div>
-        <div className="rev-right" data-aos="slide-up" data-aos-delay="100">
-          {reviewers.slice(2).map((e, index) => (
-            <HeadLineCard key={index} content={e} />
-          ))}
+      </section>
+
+      <section className="rev-bottom-section">
+        <h2 className="rev-more-reviews-title" data-aos="fade-up">
+          More <span className="rev-highlight">Reviews</span>
+        </h2>
+        <div className="rev-slider-container">
+          <motion.div
+            className="rev-slider"
+            animate={{ x: ["0%", "-100%"] }}
+            transition={{
+              repeat: Infinity,
+              duration: 20, // Adjust for speed
+              ease: "linear",
+            }}
+          >
+            {[...reviewers, ...reviewers].map((review, index) => (
+              <div key={index} className="rev-review-item">
+                <img src={review.ig} alt={review.name} className="rev-review-avatar" />
+                <div className="rev-review-text">
+                  <h4 className="rev-review-name">{review.name}</h4>
+                  <p className="rev-review-desc">{review.desc}</p>
+                </div>
+              </div>
+            ))}
+          </motion.div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };

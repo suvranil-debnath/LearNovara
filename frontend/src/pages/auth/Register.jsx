@@ -66,20 +66,20 @@ const Register = () => {
             required
           />
 
-          <div className="face-register-checkbox">
-            <label>
+          <div className="face-register-toggle">
+            <label className="switch">
               <input
                 type="checkbox"
                 checked={isFaceRegisterEnabled}
                 onChange={handleFaceRegisterChange}
               />
-              Register with Face (Optional)
+              <span className="slider round"></span>
             </label>
+            <span>Register with Face</span>
           </div>
 
           {isFaceRegisterEnabled && (
             <div className="webcam-container">
-              <h3>Optional: Register Your Face</h3>
               <WebcamStream setStream={setStream} />
               <RegisterFace setFaceDescriptor={setFaceDescriptor} />
             </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import './Header.css';
 import Chat from "../Chat/Chat";
 
@@ -10,11 +10,12 @@ const Header = ({ isAuth }) => {
   const navigate = useNavigate();
 
   const handleHomeClick = () => {
-    navigate("/"); 
+    navigate("/");
   };
 
   return (
     <div className="container-fluid p-3 lnav">
+      <Chat />
       <div className="row align-items-center">
         {/* Logo Section */}
         <div onClick={handleHomeClick} className="col-lg-3 col-md-3 col-sm-12 logo">
@@ -39,19 +40,29 @@ const Header = ({ isAuth }) => {
             <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <Link className="nav-link" to={"/"}>Home</Link>
+                  <NavLink className="nav-link" to="/" activeClassName="active">
+                    Home
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to={"/about"}>About</Link>
+                  <NavLink className="nav-link" to="/about" activeClassName="active">
+                    About
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to={"/courses"}>Courses</Link>
+                  <NavLink className="nav-link" to="/courses" activeClassName="active">
+                    Courses
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href='#tutor-section'>Tutors</a>
+                  <a className="nav-link" href="#tutor-section">
+                    Tutors
+                  </a>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to={"/about"}><Chat/></Link>
+                  <NavLink className="nav-link" to="/notes" activeClassName="active">
+                    Notes
+                  </NavLink>
                 </li>
               </ul>
             </div>
@@ -61,20 +72,20 @@ const Header = ({ isAuth }) => {
         {/* Authentication Buttons */}
         <div className="col-lg-2 col-md-2 col-sm-12 text-lg-right text-center">
           {isAuth ? (
-            <Link to="/account">
+            <NavLink to="/account">
               <button className="btn btn-outline-primary mx-1">Account</button>
-            </Link>
+            </NavLink>
           ) : (
-            <Link to="/login">
+            <NavLink to="/login">
               <button className="btn btn-outline-primary mx-1">Login</button>
-            </Link>
+            </NavLink>
           )}
           {!isAuth ? (
-            <Link to="/register">
+            <NavLink to="/register">
               <button className="btn btn-primary mx-1">Register</button>
-            </Link>
+            </NavLink>
           ) : (
-            <img src="https://avatar.iran.liara.run/public/13" height="45px" alt="ProfilePic" />
+            <img className="acc-pic" src="https://avatar.iran.liara.run/public/13" height="45px" alt="ProfilePic" />
           )}
         </div>
       </div>

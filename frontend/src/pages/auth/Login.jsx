@@ -70,9 +70,6 @@ const Login = () => {
         )}
 
         <div className="switch-login-mode">
-          <p>
-            {useFaceLogin ? "Switch to Email/Password Login" : "Switch to Face Login"}
-          </p>
           <button type="button" onClick={toggleLoginMode} className="common-btn">
             {useFaceLogin ? "Use Email/Password" : "Use Face Login"}
           </button>
