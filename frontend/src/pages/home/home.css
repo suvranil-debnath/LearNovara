@@ -60,7 +60,7 @@
 
 /* Container and positioning */
 .search-bar {
-  margin: 1rem;
+  margin: 2rem;
   display: flex;
   justify-content: center;
 }
@@ -111,6 +111,7 @@
   font-weight: 200;
   width: 100%;
   margin: 0 8px 0 8px;
+  min-height:55vh;
   
 }
 

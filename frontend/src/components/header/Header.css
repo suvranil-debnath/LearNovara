@@ -10,6 +10,8 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  padding: 0;
+  margin: 0;
   text-shadow: 4px 2px 8px rgba(0, 0, 0, 0.3) /* Shadow for text */
 }
 
@@ -31,12 +33,14 @@
 nav ul {
   list-style: none;
   display: flex;
-  position: relative;
+}
+.nav-cont{
+  padding: 0;
 }
 
 .navbar-light .navbar-nav .nav-link {
-  margin: 0 8px;
-  font-size: 20px;
+  margin: 0 2px;
+  font-size: 17px;
   font-weight: 500;
   color: rgba(36, 48, 53, 0.685);
   padding: 8px 16px;

@@ -24,7 +24,7 @@ const Header = ({ isAuth }) => {
         </div>
 
         {/* Navigation Section */}
-        <div className="col-lg-7 col-md-7 col-sm-12">
+        <div className="col-lg-7 col-md-7 col-sm-12 nav-cont">
           <nav className="navbar navbar-expand-lg navbar-expand-md navbar-light">
             <button
               className="navbar-toggler"
