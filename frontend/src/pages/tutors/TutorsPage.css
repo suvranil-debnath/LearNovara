@@ -1,0 +1,166 @@
+/* General Container Styling */
+.tutors-page-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: 'Roboto', sans-serif;
+    color: #2c3e50;
+  }
+  
+  /* Header Styling */
+  .tutors-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap; /* Ensures responsive design */
+  }
+  
+  .tutors-page-title {
+    font-size: 2.5rem;
+    margin: 0;
+    color: #2c3e50;
+    font-weight: bold;
+    letter-spacing: 2px;
+  }
+  
+  .search-container {
+    margin: 0;
+  }
+  
+  .search-input {
+    width: 300px;
+    padding: 10px 15px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .search-input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Card Container */
+  .tutors-card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* Horizontal Card Styling */
+  .tutor-horizontal-card {
+    display: flex;
+    align-items: flex-start;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .tutor-horizontal-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  }
+  
+  .tutor-card-image-container {
+    flex-shrink: 0;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .tutor-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px 0 0 12px;
+  }
+  
+  .tutor-card-content {
+    padding: 20px;
+  }
+  
+  .tutor-card-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  .tutor-card-courses{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .tutor-card-course-title {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+    color: #555;
+  }
+  
+  .tutor-card-course-list {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin: 0;
+  }
+  
+  .tutor-card-course-item {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .tutor-card-no-course {
+    font-size: 1rem;
+    color: #888;
+  }
+  
+  /* Loading & No Data States */
+  .tutors-loading,
+  .tutors-no-data {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #666;
+  }
+  
+  /* Search Container Responsiveness */
+  @media (max-width: 768px) {
+    .tutors-header {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .search-input {
+      width: 100%;
+      max-width: 400px;
+      margin-top: 10px;
+    }
+  }
+  
+  /* Horizontal Card Responsiveness */
+  @media (max-width: 768px) {
+    .tutor-horizontal-card {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .tutor-card-image-container {
+      width: 100%;
+      height: 200px;
+    }
+  
+    .tutor-card-content {
+      padding: 15px;
+    }
+  }
+  
