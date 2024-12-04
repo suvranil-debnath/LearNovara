@@ -6,10 +6,16 @@ import toast from "react-hot-toast";
 import img from "./tutor.jpg";
 import AOS from "aos";
 import "aos/dist/aos.css"; // Import AOS styles
+import { useNavigate } from "react-router-dom";
 
 const TutorsPage = () => {
+    const navigate = useNavigate()
     const [tutors, setTutors] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    const explore = () =>{
+        navigate('/tutors')
+    }
 
     const fetchTutors = async () => {
         try {
@@ -46,6 +52,7 @@ const TutorsPage = () => {
         return <div className="loading">Loading Tutors...</div>;
     }
 
+
     return (
         <div className="tutors-page" data-aos="fade">
         {/* Header Section */}
@@ -56,7 +63,7 @@ const TutorsPage = () => {
             CourseMania’s online tutors to assist & guide you in your professional
             path.
             </p>
-            <button className="explore-btn">Explore</button>
+            <button className="explore-btn" onClick={explore}>Explore</button>
         </div>
 
         {/* Grid of Tutor Cards */}
@@ -85,9 +92,6 @@ const TutorsPage = () => {
             <p>No tutors available at the moment.</p>
             )}
         </div>
-
-        {/* Find a Tutor Button */}
-        <button className="find-tutor-btn">Find A Tutor</button>
         </div>
     );
 };
