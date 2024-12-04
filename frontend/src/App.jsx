@@ -24,6 +24,7 @@ import ForgotPassword from "./pages/auth/ForgotPassword";
 import ResetPassword from "./pages/auth/ResetPassword";
 import TutorCourses from "./tutor/TutorCourses";
 import NoteUpload from "./pages/notes/NoteUpload";
+import TutorsPage from "./pages/tutors/TutorsPage";
 
 const App = () =>{
   const {isAuth, user , loading} = UserData()
@@ -95,6 +96,11 @@ const App = () =>{
             <Route
               path="/tutor/course"
               element={isAuth ? <TutorCourses user={user} /> : <Login />}
+            />
+            <Route/>
+            <Route
+              path="/tutors"
+              element={<TutorsPage/>}
             />
             <Route/>
             <Route
