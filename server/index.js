@@ -34,6 +34,7 @@ import adminRoutes from "./routes/admin.js";
 import tutorRoutes from "./routes/tutor.js"
 import scheduleRoutes from './routes/schedule.js'
 import toDoRouter from "./routes/todolist.js";
+import notesRoutes from './routes/notes.js';
 
 // using routes
 app.use("/api", userRoutes);
@@ -44,6 +45,7 @@ app.use('/api/faqs',faqRoutes);
 app.use("/api",tutorRoutes)
 app.use("/api", scheduleRoutes);
 app.use("/api/todolist", toDoRouter); 
+app.use("/api",notesRoutes);
 
 
 

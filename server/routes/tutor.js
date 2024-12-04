@@ -1,7 +1,7 @@
 import express from "express";
 import { Tutor } from "../models/Turtor.js";
 import { isAuth } from "../middlewares/isAuth.js";
-import { uploadFiles } from "../middlewares/multer.js";
+import { handleFileUpload } from "../middlewares/multer.js";
 import { tutorCreateCourse } from "../controllers/tutor.js";
 
 
@@ -26,7 +26,7 @@ router.get("/tutor/:id", async (req, res) => {
     }
   });
 
- router.post("/tutor/createcourses/:id", isAuth , uploadFiles, tutorCreateCourse );
+ router.post("/tutor/createcourses/:id", isAuth , handleFileUpload, tutorCreateCourse );
 
 
 export default router;
