@@ -55,10 +55,11 @@ const Header = ({ isAuth }) => {
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#tutor-section">
+                  <NavLink className="nav-link" to="/tutors" activeClassName="active">
                     Tutors
-                  </a>
+                  </NavLink>
                 </li>
+                
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/notes" activeClassName="active">
                     Notes
