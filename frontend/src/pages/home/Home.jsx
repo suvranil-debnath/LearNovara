@@ -11,7 +11,7 @@ import Review from '../../components/review/Review';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import AOS styles
 import TutorsPage from "../../components/tutor/TutorPage";
-
+import Chat from "../../components/Chat/Chat";
 
 const Home = () => {
     const el = useRef(null);
@@ -60,6 +60,7 @@ const Home = () => {
                 <Review />
                 <Faq />
                 <Footer />
+                <Chat/>
         </>
     );
 };
