@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import './Header.css';
-import Chat from "../Chat/Chat";
 
 import bulblogo from './bulblogo.png';
 import { TbMenuOrder } from "react-icons/tb";
@@ -15,7 +14,7 @@ const Header = ({ isAuth }) => {
 
   return (
     <div className="container-fluid p-3 lnav">
-      <Chat />
+     
       <div className="row align-items-center">
         {/* Logo Section */}
         <div onClick={handleHomeClick} className="col-lg-3 col-md-3 col-sm-12 logo">
