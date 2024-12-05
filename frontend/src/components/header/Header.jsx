@@ -20,7 +20,7 @@ const Header = ({ isAuth }) => {
         {/* Logo Section */}
         <div onClick={handleHomeClick} className="col-lg-3 col-md-3 col-sm-12 logo">
           <img src={bulblogo} className="logo-img" alt="logo" />
-          <h1>Lear</h1><h1>Novara</h1>
+          <h7>Lear</h7><h7>Novara</h7>
         </div>
 
         {/* Navigation Section */}

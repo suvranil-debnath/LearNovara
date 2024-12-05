@@ -15,21 +15,16 @@
   text-shadow: 4px 2px 8px rgba(0, 0, 0, 0.3) /* Shadow for text */
 }
 
-.logo h1 {
+.logo h7{
   display: flex;
   margin: 0;
+  font-size: 28px;
 }
 
 .logo-img {
   margin-right: 8px;
   height: 60px;
 }
-
-
-.logo h1 {
-  display: flex;
-}
-
 nav ul {
   list-style: none;
   display: flex;
