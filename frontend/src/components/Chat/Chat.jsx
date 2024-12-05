@@ -1,31 +1,38 @@
+import React, { Component } from "react";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 
-import React, {Component} from 'react'
-import '../Chat/Chat.css'
-
-export class Chat extends Component{
-
-    componentDidMount() {
-
-    (function(d, m){
-        var kommunicateSettings =
-            {"appId":"3d7f6a6677e088970d1f7a055217e5ef1","popupWidget":true,"automaticChatOpenOnNavigation":true};
-        var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
-        s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
-        var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
-        window.kommunicate = m; m._globals = kommunicateSettings;
+class Chat extends Component {
+  componentDidMount() {
+    // Load Kommunicate script dynamically
+    (function (d, m) {
+      var kommunicateSettings = {
+        appId: "3d7f6a6677e088970d1f7a055217e5ef1", // Replace with your App ID
+        popupWidget: true,
+        automaticChatOpenOnNavigation: true,
+      };
+      var s = document.createElement("script");
+      s.type = "text/javascript";
+      s.async = true;
+      s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
+      var h = document.getElementsByTagName("head")[0];
+      h.appendChild(s);
+      window.kommunicate = m;
+      m._globals = kommunicateSettings;
     })(document, window.kommunicate || {});
-/* NOTE : Use web server to view HTML files as real-time update will not work if you directly open the HTML file in the browser. */
+  }
 
+  componentWillUnmount() {
+    // Remove Kommunicate widget when navigating away
+    const chatWidget = document.getElementById("kommunicate-widget-iframe");
+    if (chatWidget) {
+      chatWidget.remove();
     }
+    delete window.kommunicate;
+  }
 
-
-    render() {
-        return(
-
-            <></>
-        )
-
-    }
+  render() {
+    return null; // The component itself doesn't render anything
+  }
 }
 
 export default Chat
