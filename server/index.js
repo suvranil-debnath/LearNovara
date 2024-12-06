@@ -35,6 +35,8 @@ import tutorRoutes from "./routes/tutor.js"
 import scheduleRoutes from './routes/schedule.js'
 import toDoRouter from "./routes/todolist.js";
 import notesRoutes from './routes/notes.js';
+import liveClassRoutes from "./routes/liveClass.js"
+
 
 // using routes
 app.use("/api", userRoutes);
@@ -46,7 +48,7 @@ app.use("/api",tutorRoutes)
 app.use("/api", scheduleRoutes);
 app.use("/api/todolist", toDoRouter); 
 app.use("/api",notesRoutes);
-
+app.use('/api', liveClassRoutes);
 
 
 
