@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import './Header.css';
-
 import bulblogo from './bulblogo.png';
 import { TbMenuOrder } from "react-icons/tb";
 
@@ -17,13 +16,13 @@ const Header = ({ isAuth }) => {
      
       <div className="row align-items-center">
         {/* Logo Section */}
-        <div onClick={handleHomeClick} className="col-lg-3 col-md-3 col-sm-12 logo">
+        <div onClick={handleHomeClick} className="col-lg-2 col-md-2 col-sm-12 logo">
           <img src={bulblogo} className="logo-img" alt="logo" />
           <h7>Lear</h7><h7>Novara</h7>
         </div>
 
         {/* Navigation Section */}
-        <div className="col-lg-7 col-md-7 col-sm-12 nav-cont">
+        <div className="col-lg-8 col-md-8 col-sm-12 nav-cont">
           <nav className="navbar navbar-expand-lg navbar-expand-md navbar-light">
             <button
               className="navbar-toggler"
@@ -43,11 +42,7 @@ const Header = ({ isAuth }) => {
                     Home
                   </NavLink>
                 </li>
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/about" activeClassName="active">
-                    About
-                  </NavLink>
-                </li>
+                
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/courses" activeClassName="active">
                     Courses
@@ -62,6 +57,16 @@ const Header = ({ isAuth }) => {
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/notes" activeClassName="active">
                     Notes
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/liveclass" activeClassName="active">
+                    Live
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/about" activeClassName="active">
+                    About
                   </NavLink>
                 </li>
               </ul>
