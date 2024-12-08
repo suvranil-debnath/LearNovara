@@ -3,6 +3,8 @@ import { server } from "../../main";
 import Popup from "./Popup";
 import "./Liveclasscard.css";
 import axios from "axios";
+import AOS from "aos"; // Import AOS library
+import "aos/dist/aos.css"; // Import AOS styles
 
 const Liveclass = ({ user }) => {
   const [subjects, setSubjects] = useState([]);
@@ -10,8 +12,9 @@ const Liveclass = ({ user }) => {
 
   const closeModal = () => setShowModal(false);
 
-  // Fetch subjects from the backend
+  // Initialize AOS and fetch subjects
   useEffect(() => {
+    AOS.init(); // Initialize AOS
     const fetchLiveClasses = async () => {
       try {
         const response = await axios.get(`${server}/api/liveclasses`);
@@ -39,20 +42,25 @@ const Liveclass = ({ user }) => {
     <>
       <div className="live-link_card">
         {subjects.map((subject) => (
-          <div key={subject._id} className="live-teacher_card">
-            <div className="live-card-image">
+          <div
+            key={subject._id}
+            className="live-teacher_card"
+            data-aos="fade-up" // AOS Animation
+            data-aos-duration="1000" // Animation duration
+          >
+            <div className="live-card-image" data-aos="zoom-in">
               <img
                 src={subject.tutorProfilePic || "default-profile.png"}
                 alt={`${subject.tutorId?.name || "Tutor"}'s profile`}
               />
             </div>
-            <div className="live-card-content">
+            <div className="live-card-content" data-aos="fade-right">
               <div className="live-text-content">
                 <h3 className="live-name">{subject.tutorId?.name}</h3>
                 <span className="live-subject"> Subject : {subject.subjectName}</span>
                 <p className="live-description"> Description : {subject.description}</p>
               </div>
-              <div className="live-join_share">
+              <div className="live-join_share" data-aos="fade-left">
                 <button
                   className="live-join_button"
                   onClick={() => handleJoin(subject.gmeetLink)}
@@ -71,7 +79,11 @@ const Liveclass = ({ user }) => {
         ))}
       </div>
       {user.role === "tutor" && (
-        <div className="live-create-class">
+        <div
+          className="live-create-class"
+          data-aos="fade-up" // AOS Animation
+          data-aos-delay="200" // Add delay to the animation
+        >
           <button
             type="button"
             className="live-class-create-btn"

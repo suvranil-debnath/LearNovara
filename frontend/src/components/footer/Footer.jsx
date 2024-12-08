@@ -1,6 +1,6 @@
 import React from "react";
 import "./Footer.css";
-
+import qrcode from './qrcode.png'
 const Footer = () => {
   return (
     <>{/* Footer */}
@@ -23,6 +23,10 @@ const Footer = () => {
               <a href="#">Contact</a>
             </li>
           </ul>
+        </div>
+        <div className="footer-center">
+          <img src={qrcode} style={{height:"150px"}}/>
+          
         </div>
 
           <div className="footer-social">

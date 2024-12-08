@@ -58,7 +58,7 @@ const Home = () => {
 
     return (
         <>
-                <div className="col-lg-5 col-md-9 col-sm-9 search-bar ">
+                <div className="col-lg-5 col-md-9 col-sm-9 search-bar">
                     <input
                         type="text"
                         placeholder="Search Courses"

@@ -1,8 +1,10 @@
-import React, { useState , useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./noteupload.css";
-import { server } from '../../main'; // Ensure `server` is correctly defined
+import { server } from "../../main"; // Ensure `server` is correctly defined
 import { MdDeleteForever } from "react-icons/md";
+import AOS from "aos"; // Import AOS library
+import "aos/dist/aos.css"; // Import AOS styles
 
 const NoteUpload = ({ user }) => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -12,13 +14,14 @@ const NoteUpload = ({ user }) => {
   const [file, setFile] = useState(null);
   const [uploadStatus, setUploadStatus] = useState("");
   const [notes, setNotes] = useState([]);
-  const [originalName,setOriginalName] = useState("");
+  const [originalName, setOriginalName] = useState("");
 
   const GOOGLE_SEARCH_API_KEY = "AIzaSyBnGMCmJIi18PZk9g4pZ3-hM_D-TvBx5G4";
   const GOOGLE_CX = "21d4c981d43aa43f5";
 
   useEffect(() => {
     fetchNotes();
+    AOS.init(); // Initialize AOS
   }, []);
 
   const fetchNotes = async () => {
@@ -104,13 +107,13 @@ const NoteUpload = ({ user }) => {
   return (
     <div className="note-app-container">
       {/* Header */}
-      <header className="note-app-header">
+      <header className="note-app-header" data-aos="fade-in">
         <h1 className="note-header-title">Student Notes Portal</h1>
         <p className="note-header-description">Search and upload notes seamlessly.</p>
       </header>
 
       {/* Search Section */}
-      <div className="note-search-section">
+      <div className="note-search-section" data-aos="fade-up">
         <h2 className="note-search-title">Search for Notes</h2>
         <div className="note-search-bar">
           <input
@@ -129,6 +132,7 @@ const NoteUpload = ({ user }) => {
             <div
               key={index}
               className="note-result-item"
+              data-aos="fade-right"
               onClick={() => handleLinkClick(item.link)}
             >
               <h3 className="note-result-title">{item.title}</h3>
@@ -140,7 +144,7 @@ const NoteUpload = ({ user }) => {
 
       {/* Iframe Section */}
       {selectedLink && (
-        <div className="note-iframe-section">
+        <div className="note-iframe-section" data-aos="zoom-in">
           <h2 className="note-iframe-title">Content Preview</h2>
           {!iframeError ? (
             <iframe
@@ -172,16 +176,16 @@ const NoteUpload = ({ user }) => {
       )}
 
       {/* Upload Section */}
-      <div className="note-upload-section">
+      <div className="note-upload-section" data-aos="fade-left">
         <h2 className="note-upload-title">Upload Notes</h2>
         <div className="note-upload-options">
           <input
-            type="text" className="note-upload-input"
+            type="text"
+            className="note-upload-input"
             placeholder="Enter a name for your file"
             value={originalName}
             onChange={(e) => setOriginalName(e.target.value)}
           />
-
           <input
             className="note-upload-file"
             type="file"
@@ -196,7 +200,7 @@ const NoteUpload = ({ user }) => {
       </div>
 
       {/* Uploaded Notes Section */}
-      <div className="uploaded-notes-section">
+      <div className="uploaded-notes-section" data-aos="fade-up">
         <h2>Uploaded Notes</h2>
         <div className="uploaded-notes">
           {notes.map((note) => {
@@ -205,7 +209,7 @@ const NoteUpload = ({ user }) => {
             const fullViewUrl = `https://drive.google.com/file/d/${fileId}/view`;
 
             return (
-              <div key={note._id} className="note-card">
+              <div key={note._id} className="note-card" data-aos="flip-up">
                 <div className="note-thumbnail">
                   <img
                     src={thumbnailUrl}
@@ -226,7 +230,7 @@ const NoteUpload = ({ user }) => {
                     onClick={() => handleDeleteNote(note._id)}
                     className="note-delete-button"
                   >
-                    <MdDeleteForever/>
+                    <MdDeleteForever />
                   </button>
                 </div>
               </div>

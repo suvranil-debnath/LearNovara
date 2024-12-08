@@ -44,7 +44,8 @@ export const UserContextProvider = ({ children }) => {
 
       toast.success(data.message);
       localStorage.setItem("activationToken", data.activationToken);
-      localStorage.setItem("faceDescriptor", JSON.stringify(faceDescriptor));
+
+      if(faceDescriptor)localStorage.setItem("faceDescriptor", JSON.stringify(faceDescriptor));
       setBtnLoading(false);
       navigate("/verify");
     } catch (error) {
