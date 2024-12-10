@@ -6,7 +6,7 @@ class Chat extends Component {
     // Load Kommunicate script dynamically
     (function (d, m) {
       var kommunicateSettings = {
-        appId: "3d7f6a6677e088970d1f7a055217e5ef1", // Replace with your App ID
+        appId: "2fbfb25aa4014d762190e1dda2b77fd24", // Replace with your App ID
         popupWidget: true,
         automaticChatOpenOnNavigation: true,
       };
