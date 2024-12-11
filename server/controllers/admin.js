@@ -35,14 +35,11 @@ export const addLectures = TryCatch(async (req, res) => {
       message: "No Course with this id",
     });
 
-  const { title, description } = req.body;
-
-  const file = req.file;
-
+  const { title, description , video } = req.body;
   const lecture = await Lecture.create({
     title,
     description,
-    video: file?.path,
+    video,
     course: course._id,
   });
 
