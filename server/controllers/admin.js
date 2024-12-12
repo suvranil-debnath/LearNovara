@@ -51,13 +51,7 @@ export const addLectures = TryCatch(async (req, res) => {
 
 export const deleteLecture = TryCatch(async (req, res) => {
   const lecture = await Lecture.findById(req.params.id);
-
-  rm(lecture.video, () => {
-    console.log("Video deleted");
-  });
-
   await lecture.deleteOne();
-
   res.json({ message: "Lecture Deleted" });
 });
 
@@ -124,7 +118,7 @@ export const deleteCourse = TryCatch(async (req, res) => {
       } else {
         // Delete local video files if applicable
         try {
-          await unlink(lecture.video);
+          // await unlink(lecture.video);
           console.log("Local video deleted");
         } catch (error) {
           console.error(`Failed to delete local video: ${lecture.video}`, error.message);
