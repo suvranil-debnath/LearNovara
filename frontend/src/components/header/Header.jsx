@@ -15,14 +15,14 @@ const Header = ({ isAuth }) => {
     <div className="container-fluid p-3 lnav">
       <div className="row align-items-center">
         {/* Logo Section */}
-        <div onClick={handleHomeClick} className="col-lg-2 col-md-2 col-sm-12 logo">
+        <div onClick={handleHomeClick} className="col-lg-3 col-md-2 col-sm-12 logo">
           <img src={bulblogo} className="logo-img" alt="logo" />
           <h6>Lear</h6>
           <h6>Novara</h6>
         </div>
 
         {/* Navigation Section */}
-        <div className="col-lg-8 col-md-8 col-sm-12 nav-cont">
+        <div className="col-lg-7 col-md-8 col-sm-12 nav-cont">
           <nav className="navbar navbar-expand-lg navbar-expand-md navbar-light">
             <button
               className="navbar-toggler"
