@@ -7,9 +7,13 @@ import EditProfileForm from "./EditProfileForm";
 import { UserData } from "../../context/UserContext";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-const Account = ({ user }) => {
+
+
+
+
+ const Account = ({ user }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const imgplaceholder = "https://avatar.iran.liara.run/public/46";
+  const [currentUser, setCurrentUser] = useState(user); // Keep a local state for the user
 
   const { setIsAuth, setUser } = UserData();
   const navigate = useNavigate();
@@ -21,14 +25,20 @@ const Account = ({ user }) => {
     toast.success("Logged Out");
     navigate("/login");
   };
+
+  // Update user state after profile edit
+  const handleProfileUpdate = (updatedUser) => {
+    setCurrentUser(updatedUser);
+  };
+
   return (
     <div className="account-container">
-      {user && (
+      {currentUser && (
         <div className="profile-card-large">
           <div className="profile-header">
             <div className="avatar">
               <img
-                src={imgplaceholder}
+                src="https://avatar.iran.liara.run/public/46"
                 alt="Profile Avatar"
                 className="profile-image"
               />
@@ -42,18 +52,18 @@ const Account = ({ user }) => {
             </button>
           </div>
           <div className="profile-details">
-            <h3>{user.name}</h3>
-            <p className="email">{user.email}</p>
+            <h3>{currentUser.name}</h3>
+            <p className="email">{currentUser.email}</p>
           </div>
           <div className="profile-actions">
-          <button
-              onClick={() => navigate(`/dashboard/${user._id}`)}
+            <button
+              onClick={() => navigate(`/dashboard/${currentUser._id}`)}
               className="com-btn"
             >
               <MdDashboard />
               Dashboard
             </button>
-            {user.role === "admin" && (
+            {currentUser.role === "admin" && (
               <button
                 onClick={() => navigate(`/admin/dashboard`)}
                 className="com-btn admin-btn"
@@ -62,7 +72,7 @@ const Account = ({ user }) => {
                 Admin Dashboard
               </button>
             )}
-            {user.role === "tutor" && (
+            {currentUser.role === "tutor" && (
               <button
                 onClick={() => navigate(`/tutor/course`)}
                 className="com-btn admin-btn"
@@ -71,10 +81,7 @@ const Account = ({ user }) => {
                 Create Course
               </button>
             )}
-            <button
-              onClick={logoutHandler}
-              className="com-btn logout-btn"
-            >
+            <button onClick={logoutHandler} className="com-btn logout-btn">
               <IoMdLogOut />
               Logout
             </button>
@@ -84,8 +91,9 @@ const Account = ({ user }) => {
 
       {isEditing && (
         <EditProfileForm
-          user={user}
+          user={currentUser}
           closeHandler={() => setIsEditing(false)}
+          onProfileUpdate={handleProfileUpdate}
         />
       )}
     </div>

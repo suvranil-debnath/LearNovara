@@ -79,14 +79,13 @@ const TutorsPage = () => {
       </div>
 
       {/* Tutors Card Container */}
-      <div className="tutors-card-container">
+      <div className="tutors-card-container"  data-aos="fade-up">
         {filteredTutors.length > 0 ? (
           filteredTutors.map((tutor, index) => (
             <div
               className="tutor-horizontal-card"
               key={index}
-              data-aos="fade-up"
-              data-aos-delay={`${index * 100}`}
+             
             >
               <div className="tutor-card-image-container">
                 <img

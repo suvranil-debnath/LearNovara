@@ -12,7 +12,7 @@ const AdminDashboard = ({ user }) => {
   if (user && user.role !== "admin") return navigate("/");
 
   const [stats, setStats] = useState({
-    totalCourses: 0,
+    totalCoures: 0,
     totalLectures: 0,
     totalUsers: 0,
   });
@@ -42,7 +42,7 @@ const AdminDashboard = ({ user }) => {
           <div className="box">
             <FaChalkboardTeacher className="icon" />
             <p>Total Courses</p>
-            <p className="stat-value">{stats.totalCourses}</p>
+            <p className="stat-value">{stats.totalCoures}</p>
           </div>
           <div className="box">
             <FaVideo className="icon" />

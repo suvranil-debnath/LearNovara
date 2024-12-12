@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./editProfileForm.css";
+import {server} from '../../main'
+import axios from "axios";
 
-const EditProfileForm = ({ user, closeHandler }) => {
+const EditProfileForm = ({ user, closeHandler , onProfileUpdate  }) => {
   // Developer-controlled field visibility
   const fieldVisibility = {
     name: true,
@@ -17,11 +19,21 @@ const EditProfileForm = ({ user, closeHandler }) => {
   };
 
   // Submit form data
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Updated User Data:", formData);
-    closeHandler();
+    try {
+      const response = await axios.put(`${server}/api/user/edit`, formData);
+      console.log("User updated successfully:", response.data);
+
+      // Notify parent component of updated data
+      onProfileUpdate(response.data.user);
+
+      closeHandler();
+    } catch (err) {
+      console.error(err);
+    }
   };
+
 
   return (
     <div className="edit-profile-modal">

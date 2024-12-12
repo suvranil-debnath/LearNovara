@@ -57,7 +57,7 @@ const Courses = () => {
 
   return (
     <div className="courses-page">
-      <h2>Explore Our Courses</h2>
+      <h2 className="courses-heading">Explore Our Courses</h2>
 
       {/* Filter Section */}
       <div className="filter-section" data-aos="fade-up">
@@ -103,7 +103,7 @@ const Courses = () => {
             </div>
           ))
         ) : (
-          <p>No Courses Found!</p>
+          <p className="no-courses">No Courses Found!</p>
         )}
       </div>
     </div>

@@ -13,12 +13,12 @@ const Header = ({ isAuth }) => {
 
   return (
     <div className="container-fluid p-3 lnav">
-     
       <div className="row align-items-center">
         {/* Logo Section */}
         <div onClick={handleHomeClick} className="col-lg-2 col-md-2 col-sm-12 logo">
           <img src={bulblogo} className="logo-img" alt="logo" />
-          <h7>Lear</h7><h7>Novara</h7>
+          <h6>Lear</h6>
+          <h6>Novara</h6>
         </div>
 
         {/* Navigation Section */}
@@ -38,34 +38,50 @@ const Header = ({ isAuth }) => {
             <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/" activeClassName="active">
+                  <NavLink 
+                    to="/" 
+                    className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+                  >
                     Home
                   </NavLink>
                 </li>
-                
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/courses" activeClassName="active">
+                  <NavLink 
+                    to="/courses" 
+                    className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+                  >
                     Courses
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/tutors" activeClassName="active">
+                  <NavLink 
+                    to="/tutors" 
+                    className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+                  >
                     Tutors
                   </NavLink>
                 </li>
-                
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/notes" activeClassName="active">
+                  <NavLink 
+                    to="/notes" 
+                    className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+                  >
                     Notes
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/liveclass" activeClassName="active">
+                  <NavLink 
+                    to="/liveclass" 
+                    className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+                  >
                     Live
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/about" activeClassName="active">
+                  <NavLink 
+                    to="/about" 
+                    className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+                  >
                     About
                   </NavLink>
                 </li>
@@ -90,7 +106,12 @@ const Header = ({ isAuth }) => {
               <button className="btn btn-primary mx-1">Register</button>
             </NavLink>
           ) : (
-            <img className="acc-pic" src="https://avatar.iran.liara.run/public/13" height="45px" alt="ProfilePic" />
+            <img
+              className="acc-pic"
+              src="https://avatar.iran.liara.run/public/13"
+              height="45px"
+              alt="ProfilePic"
+            />
           )}
         </div>
       </div>

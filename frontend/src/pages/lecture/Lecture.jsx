@@ -163,14 +163,16 @@ const Lecture = ({ user }) => {
             token: localStorage.getItem("token"),
           },
         });
-        toast.success(data.message);
+        setLecture([])
         fetchLectures();
+        toast.success(data.message);  
       } catch (error) {
         toast.error(error.response?.data?.message || "Failed to delete lecture.");
       }
     }
   };
-
+  
+9
   const fetchProgress = async () => {
     try {
       const { data } = await axios.get(`${server}/api/user/progress?course=${params.id}`, {
@@ -240,7 +242,7 @@ const Lecture = ({ user }) => {
                 <Loading />
               ) : (
                 <>
-                  {lecture.video ? (
+                  {lecture && lecture.video ? (
                     <>
                       <YouTube
                         videoId={getYouTubeID(lecture.video)}

@@ -200,7 +200,7 @@ const NoteUpload = ({ user }) => {
       </div>
 
       {/* Uploaded Notes Section */}
-      <div className="uploaded-notes-section" data-aos="fade-up">
+      <div className="uploaded-notes-section">
         <h2>Uploaded Notes</h2>
         <div className="uploaded-notes">
           {notes.map((note) => {

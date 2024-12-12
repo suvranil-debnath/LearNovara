@@ -2,6 +2,7 @@
 .live-link_card {
   display: flex;
   flex-wrap: wrap;
+  min-height: 70vh;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;

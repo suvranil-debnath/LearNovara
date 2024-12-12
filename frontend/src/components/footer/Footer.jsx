@@ -13,9 +13,7 @@ const Footer = () => {
             <li>
               <a href="#">About Us</a>
             </li>
-            <li>
-              <a href="#">Courses</a>
-            </li>
+        
             <li>
               <a href="#">Privacy Policy</a>
             </li>
@@ -25,7 +23,8 @@ const Footer = () => {
           </ul>
         </div>
         <div className="footer-center">
-          <img src={qrcode} style={{height:"150px"}}/>
+        <h4 className="footer-links-title">Get App Here</h4>
+          <img src={qrcode} style={{height:"120px"}}/>
           
         </div>
 
