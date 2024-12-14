@@ -36,19 +36,19 @@
 }
 
 .about-content h2 {
-  font-size: clamp(2rem, 5vw, 3rem); /* Dynamically scale between 2rem and 3rem */
+  font-size: clamp(1rem, 4vw, 2rem); /* Dynamically scale between 2rem and 3rem */
   color: #2f3b52;
 }
 
 .about h3 {
-  font-size: clamp(1.8rem, 4vw, 2.5rem); /* Dynamically scale between 1.8rem and 2.5rem */
+  font-size: clamp(1.2rem, 4vw, 2rem); /* Dynamically scale between 1.8rem and 2.5rem */
   color: #2d3e50;
   margin-bottom: 1rem;
   text-transform: uppercase;
 }
 
 .about p {
-  font-size: clamp(1.5rem, 3vw, 2rem); /* Dynamically scale between 1.5rem and 2rem */
+  font-size: clamp(1.1rem, 3vw, 1.5rem); /* Dynamically scale between 1.5rem and 2rem */
   line-height: 1.8;
   color: #666;
 }
@@ -75,7 +75,7 @@
 }
 
 .title-logo {
-  font-size: clamp(2rem, 5vw, 3rem); /* Dynamically scale logo font size */
+  font-size: clamp(1.5rem, 4vw, 2.5rem); /* Dynamically scale logo font size */
 }
 
 .about-icon-student img,
