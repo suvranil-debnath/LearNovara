@@ -54,7 +54,7 @@
 }
 
 .about ul {
-  font-size: clamp(1.5rem, 3vw, 2rem); /* Dynamically scale between 1.5rem and 2rem */
+  font-size: clamp(1rem, 3vw, 1.3rem); /* Dynamically scale between 1.5rem and 2rem */
   line-height: 1.8;
   color: #666;
 }
